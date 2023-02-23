@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History | PROADE BANK</title>
+    <link rel="stylesheet" href="../bootstrap-5.2.2-dist/css/bootstrap.css">
+</head>
+<style>
+    @media (max-width: 768px) {
+        .smallDeviceWidth{
+            width: 100% !important;
+        }
+    }
+</style>
+<body style="height: 100vh;" onload="showHistory()">
+    <div class="smallDeviceWidth h-100 w-50 bg-dark d-block mx-auto overflow-auto">
+        <h4 class="text-light">All Transaction History <a href="bankDashboard.html" class="float-end me-3">Go to dashboard</a></h4>
+        <div id="display" class="mt-5"></div>
+    </div>
+    <script>
+        let allBankUsers = JSON.parse(localStorage.getItem("allBankUsers"))
+        let currentBankUserIndex = JSON.parse(localStorage.getItem("currentBankUserIndex"))
+        const showHistory = ()=>{
+            allBankUsers[currentBankUserIndex].transactionHistory.reverse().map((history, index)=>{
+                display.innerHTML += `
+                <p class="d-block p-2 rounded-pill text-light">${history.transactionBeneficiaryName} <span class="ms-3">${history.transactionAmount}</span> <span class="float-end me-1">${history.transactionBeneficiaryBankName}</span></p>
+                `
+            })
+        }
+    </script>
+</body>
+</html>

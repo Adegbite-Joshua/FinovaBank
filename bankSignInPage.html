@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In | PROADE BANK</title>
+    <link rel="stylesheet" href="../bootstrap-5.2.2-dist/css/bootstrap.css">
+</head>
+<style>
+    @media (max-width: 768px) {
+        .smallDeviceWidth{
+            width: 80% !important;
+        }
+    }
+</style>
+
+<body>
+    <div class="smallDeviceWidth w-50 d-block mx-auto">
+        <marquee behavior="" direction="left" class="my-5 mx-5"><h1>PROADE BANK</h1></marquee>
+        <h3 class="text-center">Sign In Page</h3>
+        <input class="form-control my-2" type="text" placeholder="Email" id="eMail">
+        <input class="form-control my-2" type="text" placeholder="Phone Number" id="phoneNumber">
+        <input class="form-control my-2" type="text" placeholder="Password" id="password">
+        <button onclick="signIn()" class="w-100 d-block mx-auto btn btn-success">Sign In</button>
+        <a href="bankSignUpPage.html">Go to Sign Up</a>
+    </div>
+    <script>
+        let allBankUsers = JSON.parse(localStorage.getItem("allBankUsers"))
+        let currentBankUserIndex = -200
+        let correctUser = false
+        const signIn =()=>{
+            allBankUsers.map((user, index)=>{
+                if (user.eMail==eMail.value && user.phoneNumber==phoneNumber.value && user.password==password.value) {
+                    currentBankUserIndex = index
+                    localStorage.setItem("currentBankUserIndex", JSON.stringify(currentBankUserIndex))
+                    correctUser = true
+                }
+            })
+            if (correctUser==true) {
+                window.location.href = "bankDashboard.html"
+            } else {
+                alert("User not found")
+            }
+        }
+    </script>
+</body>
+</html>

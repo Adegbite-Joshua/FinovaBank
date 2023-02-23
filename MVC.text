@@ -1,0 +1,26 @@
+INTERFACE - LANDING PAGE, SIGN UP PAGE, SIGN IN PAGE, DASHBOARD, TRANSACTION RECEIPT
+PAGES - 5 Pages
+LOGIC - automaticRedirecting(), signUp(), SignIn(), displayUsers(), transfer(), deposit(), withdraw(), displayUsersTransactionHistory()
+DATA STRUCTURE - 
+    allUsers = array [user]
+    user : object {
+        firstName,
+        lastName,
+        phoneNo,
+        eMail,
+        password,
+        accNo,
+        PIN,
+        accBal,
+        history
+    }
+    history = array [
+        transaction details : object {
+            transactionDate,
+            trransactionAmount,
+            transactionBeneficiaryAccountNo,
+            transactionAmount,
+            transactionStatus,
+            transactionBeneficiaryAccountName,
+        }
+    ]

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | PROADE BANK</title>
+    <link rel="stylesheet" href="../bootstrap-5.2.2-dist/css/bootstrap.css">
+</head>
+<style>
+    @media (max-width: 768px) {
+        .smallDeviceWidth{
+            width: 80% !important;
+        }
+    }
+</style>
+<body>
+    <div class="smallDeviceWidth w-50 d-block mx-auto">
+        <marquee behavior="" direction="left" class="my-5 mx-5"><h1>PROADE BANK</h1></marquee>
+        <h3 class="text-center">Sign Up Page</h3>
+        <input type="text" placeholder="First Name" id="firstName" class="form-control mt-3 my-2">
+        <input type="text" placeholder="Last Name" id="lastName" class="form-control my-2">
+        <input type="text" placeholder="Phone Number" id="phoneNumber" class="form-control my-2">
+        <input type="email" placeholder="Email" id="eMail" class="form-control my-2">
+        <input type="text" placeholder="Password" id="password" class="form-control my-2">
+        <input type="number" placeholder="PIN" id="pin" minlength="4" maxlength="4" min="1000" max="9999" class="form-control my-2">
+        <button onclick="signUp()" class="w-100 mx-auto btn btn-success">Sign Up</button>
+        <a href="bankSignInPage.html">Go to Sign In</a>
+    </div>
+
+    <script>
+        let allBankUsers = []
+        if (localStorage.allBankUsers) {
+            allBankUsers = JSON.parse(localStorage.getItem("allBankUsers"))
+        }
+        const signUp = ()=>{
+            let user = {
+                firstName: firstName.value,
+                lastName: lastName.value,
+                phoneNumber: phoneNumber.value,
+                eMail: eMail.value,
+                password: password.value,
+                pin: pin.value,
+                accountNumber: "911"+Math.round(Math.random()*10000000),
+                accountBalance: 0.00,
+                transactionHistory: []
+            }
+            allBankUsers.push(user)
+            localStorage.setItem("allBankUsers", JSON.stringify(allBankUsers))
+            window.location.href = "bankSignInPage.html"            
+        }
+    </script>
+</body>
+</html>

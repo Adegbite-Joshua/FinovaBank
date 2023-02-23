@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Card | PROADE BANK</title>
+    <link rel="stylesheet" href="../bootstrap-5.2.2-dist/css/bootstrap.css">
+</head>
+<body>
+    <div class="w-50 d-block mx-auto">
+        <input class="form-control my-2" type="number" placeholder="Phone Number" id="phoneNumber">
+        <input class="form-control my-2" type="text" placeholder="Password" id="password">
+        <input class="form-control my-2" type="number" placeholder="Account Number" id="accountNumber">
+        <input class="form-control my-2" type="number" placeholder="PIN" id="pin">
+        <button class="w-50 d-block mx-auto btn btn-success" onclick="createCard()">Create</button>
+        <a href="bankDashboard.html">Go to dashboard</a>
+
+    </div>
+
+    <script>
+        let allBankUsers = JSON.parse(localStorage.getItem("allBankUsers"))
+        let currentBankUserIndex = JSON.parse(localStorage.getItem("currentBankUserIndex"))
+        const createCard =()=>{
+            if (allBankUsers[currentBankUserIndex].phoneNumber==phoneNumber.value) {
+                if (allBankUsers[currentBankUserIndex].password==password.value) {
+                    if (allBankUsers[currentBankUserIndex].accountNumber==accountNumber.value) {
+                        if (allBankUsers[currentBankUserIndex].pin==pin.value) {
+                            let cardNumber = Math.round(Math.random()*10000000000000000)
+                            user = {
+                                firstName: allBankUsers[currentBankUserIndex].firstName,
+                                lastName: allBankUsers[currentBankUserIndex].lastName,
+                                phoneNumber: allBankUsers[currentBankUserIndex].phoneNumber,
+                                eMail: allBankUsers[currentBankUserIndex].eMail,
+                                password: allBankUsers[currentBankUserIndex].password,
+                                pin: allBankUsers[currentBankUserIndex].pin,
+                                accountNumber: allBankUsers[currentBankUserIndex].accountNumber,
+                                accountBalance: allBankUsers[currentBankUserIndex].accountBalance,
+                                transactionHistory: allBankUsers[currentBankUserIndex].transactionHistory,
+                                cardNumber: cardNumber
+                            }
+                            allBankUsers[currentBankUserIndex] = user
+                            localStorage.setItem("allBankUsers", JSON.stringify(allBankUsers))
+                            alert("success")
+                        } else{alert("Wrong Pin")}
+                    } else{alert("Wrong account number")}
+                } else{alert("Wrong password")}
+            } else{alert("Wrong phone number")}
+        }
+    </script>
+</body>
+</html>
