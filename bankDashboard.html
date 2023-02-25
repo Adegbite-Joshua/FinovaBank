@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
+    <title  id="title">Home Page</title>
+    <link rel="shortcut icon" href="icon.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <style>
     * {
@@ -82,32 +83,35 @@
             width: 100% !important;
         }
     }
+    .hand{
+        cursor: pointer;
+    }
 </style>
 <body style="height: 100vh;" onload="displayDetails()" class="overflow-hidden">
     <div class="smallDeviceWidth w-50 bg-dark rounded-5 h-100 d-block mx-auto">
-        <div class="pt-3"><img src="../TODO APP/gift.png" alt="" style="height: 50px; width: 50px; border-radius: 50%;" class="ms-5 me-2"><h2 class="text-light d-inline" id="bankUserName"></h2><button class="ms-auto me-3 btn btn-info d-block">Sign Out</button></div>
+        <div class="pt-3"><img src="gift.png" alt="" style="height: 50px; width: 50px; border-radius: 50%;" class="ms-5 me-2"><h2 class="text-light d-inline" id="bankUserName"></h2><button class="ms-auto me-3 btn btn-info d-block" onclick="signOut()">Sign Out</button></div>
         <div>
-            <p class="text-light ms-5">Your balance <span onclick="showCardNumber()" class="float-end me-6">View Card Number</span></p>
+            <p class="text-light ms-5">Your balance <span onclick="showCardNumber()" class="float-end me-6 hand">View Card Number</span></p>
             <h3 class="text-light ms-5">$<span id="userBalance"></span>.00</h3>
-            <img src="../TODO APP/income.png" alt="" style="height: 200px;" class="w-75 rounded-5 d-block mx-auto">
+            <img src="card (2).png" alt="" style="height: 200px;" class="w-75 rounded-5 d-block mx-auto">
         </div>
-        <p class="text-light ps-5">Account Number: <span id="accountNumber"></span></p>
+        <p class="text-light text-center">Account Number: <span id="accountNumber"></span></p>
         <p>Transact</p>
         <div class="d-flex justify-content-around">
-            <div onclick="deposit()">
-            <img src="../TODO APP/more.png" alt="" style="height: 50px; width: 50px;">
+            <div onclick="deposit()" class="hand">
+            <img src="deposit.png" alt="" style="height: 50px; width: 50px;">
             <p class="text-light">Deposit</p>
             </div>
-            <div onclick="withdraw()">
-            <img src="../TODO APP/more.png" alt="" style="height: 50px; width: 50px;">
+            <div onclick="withdraw()" class="hand">
+            <img src="withdraw.png" alt="" style="height: 50px; width: 50px;">
             <p class="text-light">Withdraw</p>
             </div>
-            <div onclick="openTransfer()">
-            <img src="../TODO APP/more.png" alt="" style="height: 50px; width: 50px;">
+            <div onclick="openTransfer()" class="hand">
+            <img src="transfer.png" alt="" style="height: 50px; width: 50px;">
             <p class="text-light">Transfer</p>
             </div>
         </div>
-        <div class="text-light p-5">
+        <div class="text-light">
             <h3>Recent History <a class="float-end me-0 me-sm-5" href="bankHistoryPage.html">View All</a></h3>
             <div id="historyDisplay"></div>
         </div>
@@ -158,14 +162,24 @@
             <button type="button" class="btn-close ms-auto d-block my-2" onclick="closeCardNumber()"
                 aria-label="Close"></button>
             <p id="cardNumber16" class="text-danger"></p>
-            <a href="createCard.html" id="createLink" class="d-none">Create here</a>
+            <p>No card yet, click <a href="createCard.html" id="createLink" class="">Create here</a></p>
             <button type="button" id="button1" onclick="closeCardNumber()">Close</button>
         </div>
     </div>
 
     <script>
+        if (!localStorage.currentBankUserIndex) {
+            alert("No user found")
+            window.location.href  = "bankSignInPage.html"
+        }
         let allBankUsers = JSON.parse(localStorage.getItem("allBankUsers"))
         let currentBankUserIndex = JSON.parse(localStorage.getItem("currentBankUserIndex"))
+        title.innerText = `${allBankUsers[currentBankUserIndex].firstName} | Dashboard - PROADE BANK`
+        let phoneNumberRegex = /^[\d]{11}$/
+        let eMailRegex = /^[\w]+[@][\w]{2,15}[.][\w]{2,15}([.][\w]{2,15})?$/
+        let pinRegex = /^[\d]{4}$/
+        let accountNumberRegex = /^[\d]{11}$/
+        let cardNumberRegex = /^[\d]{16}$/
         const displayDetails =()=>{
             bankUserName.innerText = `${allBankUsers[currentBankUserIndex].firstName} ${allBankUsers[currentBankUserIndex].lastName}`
             userBalance.innerText = `${allBankUsers[currentBankUserIndex].accountBalance}`
@@ -311,6 +325,10 @@
         }
         const closeCardNumber = ()=>{
             popup4.classList.remove("open-popup")
+        }
+        const signOut =()=>{
+            localStorage.removeItem("currentBankUserIndex")
+            window.location.href = "bankSignInPage.html"
         }
     </script>
 </body>
