@@ -23,8 +23,28 @@
     <script>
         let allBankUsers = JSON.parse(localStorage.getItem("allBankUsers"))
         let currentBankUserIndex = JSON.parse(localStorage.getItem("currentBankUserIndex"))
+        let eMailRegex = /^[\w]+[@][\w]{2,15}[.][\w]{2,15}([.][\w]{2,15})?$/
+        let phoneNumberRegex = /^[\d]{11}$/
+        let pinRegex = /^[\d]{4}$/
+        let accountNumberRegex = /^[\d]{10}$/
         title.innerText = `${allBankUsers[currentBankUserIndex].firstName} | Create Card - PROADE BANK`
         const createCard =()=>{
+            if (phoneNumberRegex.test(phoneNumber.value)) {
+                if (accountNumberRegex.test(accountNumber.value)) {
+                    if (pinRegex.test(pin.value)) {
+                        
+                    } else{
+                        information.innerText = "Invalid PIN"
+                        setTimeout(()=>information.innerText="", 3000)
+                    }
+                } else{
+                    information.innerText = "Invalid Account Number"
+                    setTimeout(()=>information.innerText="", 3000)
+                }
+            } else{
+                information.innerText = "Invalid Phone Number"
+                setTimeout(()=>information.innerText="", 3000)
+            }
             if (allBankUsers[currentBankUserIndex].cardNumber) {
                 alert("User card exists")
                 window.location.href = "bankDashboard.html"

@@ -1,97 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title  id="title">Home Page</title>
+    <title id="title">Home Page</title>
     <link rel="shortcut icon" href="icon.png" type="image/x-icon">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'poppins', sans-serif;
-    }
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'poppins', sans-serif;
+        }
 
-    .containerp {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+        .containerp {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-    .btnp {
-        padding: 10px 60px;
-        background: #fff;
-        border: 0;
-        outline: none;
-        cursor: pointer;
-        font-size: 22px;
-        font-weight: 500;
-        border-radius: 30px;
-    }
+        .btnp {
+            padding: 10px 60px;
+            background: #fff;
+            border: 0;
+            outline: none;
+            cursor: pointer;
+            font-size: 22px;
+            font-weight: 500;
+            border-radius: 30px;
+        }
 
-    .popup {
-        width: 400px;
-        background: #fff;
-        border-radius: 6px;
-        position: absolute;
-        top: 0;
-        left: 50%;
-        transform: translate(-50%, -50%) scale(0.1);
-        text-align: center;
-        padding: 0 30px 30px;
-        color: #333;
-        visibility: hidden;
-        transition: transform 0.4s, top 0.4s;
-    }
-
-    .open-popup {
-        visibility: visible;
-        top: 50%;
-        transform: translate(-50%, -50%) scale(1);
-    }
-
-    .popup h2 {
-        font-size: 38px;
-        font-weight: 500;
-        margin: 30px 0 10px;
-    }
-
-    .popup #button1 {
-        width: 100%;
-        margin-top: 50px;
-        padding: 10px 0;
-        background: #198754;
-        color: #fff;
-        border: 0;
-        outline: none;
-        font-size: 18px;
-        border-radius: 4px;
-        cursor: pointer;
-        box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
-    }
-
-    @media (max-width:700px) {
         .popup {
-            width: 300px;
+            width: 400px;
+            background: #fff;
+            border-radius: 6px;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.1);
+            text-align: center;
+            padding: 0 30px 30px;
+            color: #333;
+            visibility: hidden;
+            transition: transform 0.4s, top 0.4s;
         }
-    }
-    @media (max-width: 768px) {
-        .smallDeviceWidth {
-            width: 100% !important;
+
+        .open-popup {
+            visibility: visible;
+            top: 50%;
+            transform: translate(-50%, -50%) scale(1);
         }
-    }
-    .hand{
-        cursor: pointer;
-    }
-</style>
+
+        .popup h2 {
+            font-size: 38px;
+            font-weight: 500;
+            margin: 30px 0 10px;
+        }
+
+        .popup #button1 {
+            width: 100%;
+            margin-top: 50px;
+            padding: 10px 0;
+            background: #198754;
+            color: #fff;
+            border: 0;
+            outline: none;
+            font-size: 18px;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width:700px) {
+            .popup {
+                width: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .smallDeviceWidth {
+                width: 100% !important;
+            }
+        }
+
+        .hand {
+            cursor: pointer;
+        }
+    </style>
+
 <body style="height: 100vh;" onload="displayDetails()" class="overflow-hidden">
     <div class="smallDeviceWidth w-50 bg-dark rounded-5 h-100 d-block mx-auto">
-        <div class="pt-3"><img src="gift.png" alt="" style="height: 50px; width: 50px; border-radius: 50%;" class="ms-5 me-2"><h2 class="text-light d-inline" id="bankUserName"></h2><button class="ms-auto me-3 btn btn-info d-block" onclick="signOut()">Sign Out</button></div>
+        <div class="pt-3"><img src="gift.png" alt="" style="height: 50px; width: 50px; border-radius: 50%;"
+                class="ms-5 me-2">
+            <h2 class="text-light d-inline" id="bankUserName"></h2><button class="ms-auto me-3 btn btn-info d-block"
+                onclick="signOut()">Sign Out</button>
+        </div>
         <div>
-            <p class="text-light ms-5">Your balance <span onclick="showCardNumber()" class="float-end me-6 hand">View Card Number</span></p>
+            <p class="text-light ms-5">Your balance <span onclick="showCardNumber()" class="float-end me-6 hand">View
+                    Card Number</span></p>
             <h3 class="text-light ms-5">$<span id="userBalance"></span>.00</h3>
             <img src="card (2).png" alt="" style="height: 200px;" class="w-75 rounded-5 d-block mx-auto">
         </div>
@@ -99,16 +109,16 @@
         <p>Transact</p>
         <div class="d-flex justify-content-around">
             <div onclick="deposit()" class="hand">
-            <img src="deposit.png" alt="" style="height: 50px; width: 50px;">
-            <p class="text-light">Deposit</p>
+                <img src="deposit.png" alt="" style="height: 50px; width: 50px;">
+                <p class="text-light">Deposit</p>
             </div>
             <div onclick="withdraw()" class="hand">
-            <img src="withdraw.png" alt="" style="height: 50px; width: 50px;">
-            <p class="text-light">Withdraw</p>
+                <img src="withdraw.png" alt="" style="height: 50px; width: 50px;">
+                <p class="text-light">Withdraw</p>
             </div>
             <div onclick="openTransfer()" class="hand">
-            <img src="transfer.png" alt="" style="height: 50px; width: 50px;">
-            <p class="text-light">Transfer</p>
+                <img src="transfer.png" alt="" style="height: 50px; width: 50px;">
+                <p class="text-light">Transfer</p>
             </div>
         </div>
         <div class="text-light">
@@ -121,9 +131,10 @@
             <button type="button" class="btn-close ms-auto d-block my-2" onclick="closeTransferPopup()"
                 aria-label="Close"></button>
             <p id="transferStatus" class="text-danger"></p>
-            <input type="text" class="form-control my-2 mt-5" placeholder="Beneficiary Account Number" id="beneficiaryAccountNumber">
+            <input type="text" class="form-control my-2 mt-5" placeholder="Beneficiary Account Number"
+                id="beneficiaryAccountNumber">
             <p id="beneficiaryName"></p>
-            <select name="" id="beneficiaryBank" class="form-control my-2"  onchange="fetchName()">
+            <select name="" id="beneficiaryBank" class="form-control my-2" onchange="fetchName()">
                 <option value="null" selected>Select Bank</option>
                 <option value="PROADE">PROADE BANK</option>
                 <option value="Zenith">Zenith Bank</option>
@@ -134,6 +145,7 @@
             </select>
             <input type="number" class="form-control my-2" placeholder="Amount" id="transferAmount">
             <input type="number" class="form-control my-2" placeholder="PIN" id="pin">
+            <p id="displayError" class="text-danger"></p>
             <button type="button" id="button1" onclick="transfer()">Send</button>
         </div>
     </div>
@@ -144,6 +156,7 @@
             <input type="number" class="form-control my-2" placeholder="Card Number" id="cardNumber2">
             <!-- <input type="number" class="form-control my-2" placeholder="Amount" id="depositAmount"> -->
             <input type="number" class="form-control my-2" placeholder="PIN" id="pin2">
+            <p id="displayError2" class="text-danger"></p>
             <button type="button" id="button1" onclick="closeDepositPopup()">Deposit</button>
         </div>
     </div>
@@ -154,6 +167,7 @@
             <input type="number" class="form-control my-2" placeholder="Enter your card number" id="cardNumber">
             <input type="number" class="form-control my-2" placeholder="Amount" id="withdrawAmount">
             <input type="number" class="form-control my-2" placeholder="PIN" id="pin3">
+            <p id="displayError3" class="text-danger"></p>
             <button type="button" id="button1" onclick="closeWithdrawPopup2()">Withdraw</button>
         </div>
     </div>
@@ -170,166 +184,214 @@
     <script>
         if (!localStorage.currentBankUserIndex) {
             alert("No user found")
-            window.location.href  = "bankSignInPage.html"
+            window.location.href = "bankSignInPage.html"
         }
         let allBankUsers = JSON.parse(localStorage.getItem("allBankUsers"))
         let currentBankUserIndex = JSON.parse(localStorage.getItem("currentBankUserIndex"))
         title.innerText = `${allBankUsers[currentBankUserIndex].firstName} | Dashboard - PROADE BANK`
         let phoneNumberRegex = /^[\d]{11}$/
-        let eMailRegex = /^[\w]+[@][\w]{2,15}[.][\w]{2,15}([.][\w]{2,15})?$/
         let pinRegex = /^[\d]{4}$/
-        let accountNumberRegex = /^[\d]{11}$/
+        let accountNumberRegex = /^[\d]{10}$/
         let cardNumberRegex = /^[\d]{16}$/
-        const displayDetails =()=>{
+        let amountRegex = /^[\d]+$/
+        const displayDetails = () => {
             bankUserName.innerText = `${allBankUsers[currentBankUserIndex].firstName} ${allBankUsers[currentBankUserIndex].lastName}`
             userBalance.innerText = `${allBankUsers[currentBankUserIndex].accountBalance}`
             accountNumber.innerText = `${allBankUsers[currentBankUserIndex].accountNumber}`
             transactionsHistory()
         }
-        const openTransfer =()=>{
+        const openTransfer = () => {
             popup.classList.add("open-popup")
         }
         const fetchName = () => {
-            if (beneficiaryBank.value=="PROADE") {
-                allBankUsers.find((user, index)=>{
-                if (user.accountNumber==beneficiaryAccountNumber.value) {
-                    beneficiaryName.innerText = `Beneficiary:  ${user.firstName} ${user.lastName}`
-                }
-            })
-            } else{
+            if (beneficiaryBank.value == "PROADE") {
+                allBankUsers.find((user, index) => {
+                    if (user.accountNumber == beneficiaryAccountNumber.value) {
+                        beneficiaryName.innerText = `Beneficiary:  ${user.firstName} ${user.lastName}`
+                    }
+                })
+            } else {
                 transferStatus.innerText = `User not found under this bank`
                 beneficiaryName.innerText = ""
-                setTimeout(()=>transferStatus.innerText = "", 3000)
+                setTimeout(() => transferStatus.innerText = "", 3000)
             }
         }
         const transfer = () => {
-            if (allBankUsers[currentBankUserIndex].accountBalance>=transferAmount.value) {
-                    if (beneficiaryBank.value=="PROADE") {
-                        if (allBankUsers[currentBankUserIndex].pin==Number(pin.value)) {
-                            // if (beneficiaryBank.value=="Proade") {
-                                allBankUsers.map((user, index)=>{
-                                if (user.accountNumber==beneficiaryAccountNumber.value) {
-                                user.accountBalance += Number(transferAmount.value)
-                                allBankUsers[currentBankUserIndex].accountBalance -= transferAmount.value
+            if (pinRegex.test(pin.value)) {
+                if (accountNumberRegex.test(beneficiaryAccountNumber.value)) {
+                    if (allBankUsers[currentBankUserIndex].accountBalance >= transferAmount.value) {
+                        if (beneficiaryBank.value == "PROADE") {
+                            if (allBankUsers[currentBankUserIndex].pin == Number(pin.value)) {
+                                allBankUsers.map((user, index) => {
+                                    if (user.accountNumber == beneficiaryAccountNumber.value) {
+                                        user.accountBalance += Number(transferAmount.value)
+                                        allBankUsers[currentBankUserIndex].accountBalance -= transferAmount.value
+                                        transactionDetails = {
+                                            transactionAmount: `-${transferAmount.value}`,
+                                            transactionBeneficiaryName: `${user.firstName} ${user.lastName}`,
+                                            transactionDate: new Date(),
+                                            transactionBeneficiaryBankName: beneficiaryBank.value,
+                                            transactionStatus: "Successful"
+                                        }
+                                        allBankUsers[currentBankUserIndex].transactionHistory.push(transactionDetails)
+                                        localStorage.setItem("allBankUsers", JSON.stringify(allBankUsers))
+                                        alert("Success")
+                                        beneficiaryBank.value = "null"
+                                        pin.value = ""
+                                        transferAmount.value = ""
+                                        beneficiaryAccountNumber.value = ""
+                                        closeTransferPopup()
+                                        displayDetails()
+                                        transactionsHistory()
+                                    }
+                                })
+                            } else {
+                                transferStatus.innerText = `Wrong Pin`
+                                setTimeout(() => transferStatus.innerText = "", 3000)
+                            }
+                        } else {
+                            transferStatus.innerText = `Working on other banks, you can only use PROADE BANK for now`
+                            setTimeout(()=> transferStatus.innerText = "", 3000)
+                        }
+                    } else {
+                        transferStatus.innerText = `Insufficient balance`
+                        setTimeout(()=> transferStatus.innerText = "", 3000)
+                    }
+                   
+                } else {
+                    displayError.innerText = "Invalid Account Number"
+                    setTimeout(()=> displayError.innerText = "", 3000)
+                }
+            } else {
+                displayError.innerText = "Invalid PIN"
+                setTimeout(() => displayError.innerText = "", 3000)
+            }
+
+        }
+        const closeTransferPopup = () => {
+            popup.classList.remove("open-popup")
+        }
+        const closeTransferPopup2 = () => {
+            popup.classList.remove("open-popup")
+        }
+        const deposit = () => {
+            popup2.classList.add("open-popup")
+        }
+        const closeDepositPopup = () => {
+            if (pinRegex.test(pin2.value)) {
+                if (cardNumberRegex.test(cardNumber2.value)) {
+                    let depositAmountCal = Math.round(Math.random() * 100) + "000"
+                    if (allBankUsers[currentBankUserIndex].pin == pin2.value) {
+                        if (allBankUsers[currentBankUserIndex].cardNumber == cardNumber2.value) {
+                            allBankUsers[currentBankUserIndex].accountBalance += Number(depositAmountCal)
+                            transactionDetails = {
+                                transactionAmount: `+${depositAmountCal}`,
+                                transactionBeneficiaryName: `${allBankUsers[currentBankUserIndex].firstName} ${allBankUsers[currentBankUserIndex].lastName}`,
+                                transactionDate: new Date(),
+                                transactionBeneficiaryBankName: "PROADE",
+                                transactionStatus: "Successful"
+                            }
+                            alert(`${depositAmountCal} has successfully been deposited`)
+                            allBankUsers[currentBankUserIndex].transactionHistory.push(transactionDetails)
+                            popup2.classList.remove("open-popup")
+                            localStorage.setItem("allBankUsers", JSON.stringify(allBankUsers))
+                            displayDetails()
+                            transactionsHistory()
+                            pin2.value = ""
+                            cardNumber2.value = ""
+                        } else {
+                            displayError2.innerText = "Wrong card number"
+                            setTimeout(()=>displayError2.innerText="", 3000)
+                        }
+                    } else {
+                        displayError2.innerText = "Wrong pin"
+                        setTimeout(()=>displayError2.innerText="", 3000)
+                    }
+                } else{
+                    displayError2.innerText = "Invalid Card Number"
+                    setTimeout(()=>displayError2.innerText="", 3000)
+                }
+            } else{
+                displayError2.innerText = "Invalid PIN"
+                setTimeout(()=>displayError2.innerText="", 3000)
+            }
+
+        }
+        const closeDepositPopup2 = () => {
+            popup2.classList.remove("open-popup")
+        }
+        const transactionsHistory = () => {
+            historyDisplay.innerHTML = ""
+            let bankHistory = allBankUsers[currentBankUserIndex].transactionHistory.reverse().filter((history, index) => index <= 3)
+            bankHistory.map((history, index) => {
+                historyDisplay.innerHTML += `<p class="d-block text-light p-2 rounded-pill">${history.transactionBeneficiaryName} <span class="ms-3">${history.transactionAmount}</span> <span class="float-end me-1">${history.transactionBeneficiaryBankName}</span></p>`
+            })
+        }
+        const closeWithdrawPopup = () => {
+            popup3.classList.remove("open-popup")
+        }
+        const closeWithdrawPopup2 = () => {
+            if (cardNumberRegex.test(cardNumber.value)) {
+                if (pinRegex.test(pin3.value)) {
+                    if (allBankUsers[currentBankUserIndex].cardNumber == cardNumber.value) {
+                        if (allBankUsers[currentBankUserIndex].accountBalance >= withdrawAmount.value) {
+                            if (allBankUsers[currentBankUserIndex].pin == pin3.value) {
+                                allBankUsers[currentBankUserIndex].accountBalance -= withdrawAmount.value
                                 transactionDetails = {
-                                    transactionAmount: `-${transferAmount.value}`,
-                                    transactionBeneficiaryName: `${user.firstName} ${user.lastName}`,
-                                    transactionDate : new Date(),
-                                    transactionBeneficiaryBankName : beneficiaryBank.value,
-                                    transactionStatus : "Successful"
+                                    transactionAmount: `-${withdrawAmount.value}`,
+                                    transactionBeneficiaryName: `${allBankUsers[currentBankUserIndex].firstName} ${allBankUsers[currentBankUserIndex].lastName}`,
+                                    transactionDate: new Date(),
+                                    transactionBeneficiaryBankName: "PROADE BANK",
+                                    transactionStatus: "Successful"
                                 }
                                 allBankUsers[currentBankUserIndex].transactionHistory.push(transactionDetails)
                                 localStorage.setItem("allBankUsers", JSON.stringify(allBankUsers))
                                 alert("Success")
-                                beneficiaryBank.value = "null"
-                                pin.value = ""
-                                transferAmount.value = ""
-                                beneficiaryAccountNumber.value = ""
-                                closeTransferPopup()
-                                }
-                                })
-                            // }
-                        } else{
-                            transferStatus.innerText = `Wrong Pin`
-                            setTimeout(()=>transferStatus.innerText = "", 3000)
-                        }
-                    } else{
-                        transferStatus.innerText = `Working on other banks, you can only use PROADE BANK for now`
-                        setTimeout(()=>transferStatus.innerText = "", 3000)
-                    }
-            } else{
-                transferStatus.innerText = `Insufficient balance`
-                setTimeout(()=>transferStatus.innerText = "", 3000)
-            }
-            displayDetails()
-        }
-        const closeTransferPopup =()=>{
-            popup.classList.remove("open-popup")
-        } 
-        const closeTransferPopup2 = () => {
-            popup.classList.remove("open-popup")
-        }
-        const deposit =()=>{
-            popup2.classList.add("open-popup")
-        }
-        const closeDepositPopup = () => {
-            let depositAmountCal = Math.round(Math.random()*100)+"000"
-            if (allBankUsers[currentBankUserIndex].pin==pin2.value) {
-                if (allBankUsers[currentBankUserIndex].cardNumber==cardNumber2.value) {
-                    allBankUsers[currentBankUserIndex].accountBalance += Number(depositAmountCal)
-                    transactionDetails = {
-                                        transactionAmount: `+${depositAmountCal}`,
-                                        transactionBeneficiaryName: `${allBankUsers[currentBankUserIndex].firstName} ${allBankUsers[currentBankUserIndex].lastName}`,
-                                        transactionDate : new Date(),
-                                        transactionBeneficiaryBankName : "PROADE",
-                                        transactionStatus : "Successful"
+                                popup3.classList.remove("open-popup")
+                                displayDetails()
+                                transactionsHistory()
+                                cardNumber.value = ""
+                                pin3.value = ""
+                                withdrawAmount.value = ""
+                            } else { displayError3.innerText = "Wrong pin"
+                                    setTimeout(()=>displayError3.innerText="", 3000)
                                     }
-                    allBankUsers[currentBankUserIndex].transactionHistory.push(transactionDetails)
-                    popup2.classList.remove("open-popup")
-                    localStorage.setItem("allBankUsers", JSON.stringify(allBankUsers))
-                    displayDetails()
+                        } else { displayError3.innerText = "Insufficient balance"
+                         setTimeout(()=>displayError3.innerText="", 3000)
+                        }
+                    } else { displayError3.innerText = "Wrong card number"
+                            setTimeout(()=>displayError3.innerText="", 3000)
+                            }
                 } else{
-                    alert("Wrong card number")
+                    displayError3.innerText = "Invalid PIN"
+                    setTimeout(()=>displayError3.innerText="", 3000)
                 }
             } else{
-                alert("Wrong pin")
+                displayError3.innerText = "Invalid Card Number"
+                setTimeout(()=>displayError3.innerText="", 3000)
             }
-            
+
         }
-        const closeDepositPopup2 = () => {
-            popup2.classList.remove("open-popup")
-        } 
-        const transactionsHistory =()=>{
-            historyDisplay.innerHTML = ""
-            let bankHistory = allBankUsers[currentBankUserIndex].transactionHistory.reverse().filter((history, index)=>index<=3)
-            bankHistory.map((history, index)=>{
-                historyDisplay.innerHTML += `<p class="d-block text-light p-2 rounded-pill">${history.transactionBeneficiaryName} <span class="ms-3">${history.transactionAmount}</span> <span class="float-end me-1">${history.transactionBeneficiaryBankName}</span></p>`
-            })
-        }
-        const closeWithdrawPopup =()=>{
-            popup3.classList.remove("open-popup")
-        } 
-        const closeWithdrawPopup2 = () => {
-            if (allBankUsers[currentBankUserIndex].cardNumber==cardNumber.value) {
-                if (allBankUsers[currentBankUserIndex].accountBalance>=withdrawAmount.value) {
-                    if (allBankUsers[currentBankUserIndex].pin==pin3.value) {
-                        allBankUsers[currentBankUserIndex].accountBalance -= withdrawAmount.value
-                        transactionDetails = {
-                                    transactionAmount: `-${withdrawAmount.value}`,
-                                    transactionBeneficiaryName: `${allBankUsers[currentBankUserIndex].firstName} ${allBankUsers[currentBankUserIndex].lastName}`,
-                                    transactionDate : new Date(),
-                                    transactionBeneficiaryBankName : "PROADE BANK",
-                                    transactionStatus : "Successful"
-                                }
-                        allBankUsers[currentBankUserIndex].transactionHistory.push(transactionDetails)
-                        localStorage.setItem("allBankUsers", JSON.stringify(allBankUsers))
-                        alert("Success")
-                        popup3.classList.remove("open-popup")
-                        displayDetails()
-                    } else{alert("Wrong pin")}
-                } else{alert("Insufficient balance")}
-            } else{alert("Wrong card number")}
-            
-        }
-        const withdraw =()=>{
+        const withdraw = () => {
             popup3.classList.add("open-popup")
         }
-        const showCardNumber = ()=>{
+        const showCardNumber = () => {
             if (allBankUsers[currentBankUserIndex].cardNumber) {
                 cardNumber16.innerText = `Your card number:  ${allBankUsers[currentBankUserIndex].cardNumber}`
-            } else{
+            } else {
                 cardNumber16.innerText = `You are yet to create a card`
-                createLink.className = "d-block" 
+                createLink.className = "d-block"
             }
             popup4.classList.add("open-popup")
         }
-        const closeCardNumber = ()=>{
+        const closeCardNumber = () => {
             popup4.classList.remove("open-popup")
         }
-        const signOut =()=>{
+        const signOut = () => {
             localStorage.removeItem("currentBankUserIndex")
             window.location.href = "bankSignInPage.html"
         }
     </script>
 </body>
+
 </html>
