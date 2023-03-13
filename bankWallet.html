@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wallets</title>
+    <link rel="stylesheet" href="../bootstrap-5.2.2-dist/css/bootstrap.css">
+    <link rel="shortcut icon" href="./icon.png" type="image/x-icon">
+    <script src="./CHART JS/chart.js"></script>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"> -->
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'poppins', sans-serif;
+    }
+
+    .containerp {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .btnp {
+        padding: 10px 60px;
+        background: #fff;
+        border: 0;
+        outline: none;
+        cursor: pointer;
+        font-size: 22px;
+        font-weight: 500;
+        border-radius: 30px;
+    }
+
+    .popup {
+        width: 400px;
+        background: #fff;
+        border-radius: 6px;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.1);
+        text-align: center;
+        padding: 0 30px 30px;
+        color: #333;
+        visibility: hidden;
+        transition: transform 0.4s, top 0.4s;
+    }
+
+    .open-popup {
+        visibility: visible;
+        top: 50%;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    .popup h2 {
+        font-size: 38px;
+        font-weight: 500;
+        margin: 30px 0 10px;
+    }
+
+    .popup #button1 {
+        width: 100%;
+        margin-top: 50px;
+        padding: 10px 0;
+        background: #198754;
+        color: #fff;
+        border: 0;
+        outline: none;
+        font-size: 18px;
+        border-radius: 4px;
+        cursor: pointer;
+        box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    @media (max-width:700px) {
+        .popup {
+            width: 600px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .smallDeviceWidth {
+            width: 100% !important;
+        }
+    }
+
+    .hand {
+        cursor: pointer;
+    }
+
+    .smallFont {
+        font-size: 10px;
+    }
+</style>
+
+<body onload="showTotalWalletBalance()" class="bg-warning" style="overflow-x: hidden;">
+    <div class="smallDeviceWidth w-75 bg-info d-block mx-auto my-3 rounded-5">
+        <h2 class="text-center text-danger fw-bold p-3">PROADE BANK</h2>
+        <div>
+            <h3 id="userName" class="ms-5 "></h3>
+            <h5 class="ms-5 text-warning d-inline-block">Wallets</h5>
+            <button class="btn btn-success ms-auto d-block me-5" onclick="openCreateWallet()">Create New
+                Wallets</button>
+            <button onclick="viewSmallChart()" class="d-inline me-3 d-md-none">View Chart</button>
+            <p class="ms-5">Total Wallets Balance <span id="totalWalletBalance"></span></p>
+        </div>
+    </div>
+    <div class="row">
+        <div id="displayWallet" class="col-12 col-md-6 row flex-column"></div>
+        <div class="col-6 d-none d-md-inline">
+            <select name="" id="chartType" class="form-control">
+                <option value="doughnut">Select Chart Type</option>
+                <option value="pie">Pie Chart</option>
+                <option value="doughnut">Doughnut Chart</option>
+                <option value="bar">Bar Chart</option>
+                <option value="line">Line Chart</option>
+            </select>
+            <canvas id="walletChart" width="400" height="400" style="border: 2px solid red;"></canvas>
+        </div>
+    </div>
+
+
+    <div class="containerp">
+        <div class="popup" id="popup">
+            <button type="button" class="btn-close ms-auto d-block my-2" onclick="createWallet()"
+                aria-label="Close"></button>
+            <p id="transferStatus" class="text-danger"></p>
+            <input type="text" class="form-control my-2 mt-5" placeholder="Wallet Name" id="walletName">
+            <input type="number" class="form-control my-2" placeholder="Target Amount" id="targetAmount">
+            <input type="number" class="form-control my-2" placeholder="PIN" id="pin">
+            <p id="displayError" class="text-danger"></p>
+            <button type="button" id="button1" onclick="createWallet2()">Create</button>
+        </div>
+    </div>
+    <div class="containerp">
+        <div class="popup" id="popup2">
+            <button type="button" class="btn-close ms-auto d-block my-2" onclick="addMoneyToWallet()"
+                aria-label="Close"></button>
+            <input type="number" class="form-control my-2" placeholder="Amount" id="amountToAdd">
+            <input type="number" class="form-control my-2" placeholder="PIN" id="pin2">
+            <p id="displayError2" class="text-danger"></p>
+            <button type="button" id="button1" onclick="addMoneyToWallet2(walletIndex)">Add Money</button>
+        </div>
+    </div>
+    <div class="containerp">
+        <div class="popup" id="popup3">
+            <button type="button" class="btn-close ms-auto d-block my-2" onclick="deleteWallet()"
+                aria-label="Close"></button>
+            <p class="text-danger">Are you sure you want to delte this wallet? Your wallet balance will be added to your
+                main account balance</p>
+            <button type="button" id="button1" onclick="deleteWallet2(walletIndex)">Delete Wallet</button>
+        </div>
+    </div>
+    <div class="containerp">
+        <div class="popup" id="popup4">
+            <button type="button" class="btn-close ms-auto d-block my-2" onclick="closeSmallChart()"
+                aria-label="Close"></button>
+            <div id="smallView">
+                <canvas id="walletChart" width="400" height="400" style="border: 2px solid red;"></canvas>
+            </div>
+            <button type="button" id="button1" onclick="closeSmallChart()">Close</button>
+        </div>
+    </div>
+    <script>
+        let allBankUsers = JSON.parse(localStorage.getItem("allBankUsers"))
+        let currentBankUserIndex = JSON.parse(localStorage.getItem("currentBankUserIndex"))
+        userName.innerText = `${allBankUsers[currentBankUserIndex].firstName} ${allBankUsers[currentBankUserIndex].lastName}`
+        const showTotalWalletBalance = () => {
+            let totalWalletBalancee = 0
+            let initialWalletsBalance = 0
+            allBankUsers[currentBankUserIndex].wallets.map((wallet) => {
+                totalWalletBalancee += Number(wallet.walletBalance)
+            })
+            totalWalletBalance.innerText = totalWalletBalancee
+            showWallet()
+            drawChart()
+        }
+        const showWallet = () => {
+            if (allBankUsers[currentBankUserIndex].wallets.length >= 0) {
+                displayWallet.innerHTML = ""
+                allBankUsers[currentBankUserIndex].wallets.map((wallet, index) => {
+                    displayWallet.innerHTML += `
+                        <div class="p-3 bg-light rounded-3 shadow-md d-block col-10 col-md-5 ms-5 my-2 mx-auto">
+                            <p class="my-1">Wallet Name: ${wallet.walletName}</p>
+                            <p class="my-1">Target Amount: ${wallet.walletTargetAmount}</p>
+                            <p class="my-1">Wallet Balance: ${wallet.walletBalance}</p>
+                            <div class="btn-group">
+                                <button onclick="openAddMoney(${index})" class="btn btn-success">Add Money</button>
+                                <button onclick="addMoneyToWallet(${index})" class="btn btn-success">Withdraw</button>
+                                <button onclick="openDeleteWallet(${index})" class="btn btn-danger">Delete Wallet</button>
+                            </div>
+                        </div>
+                    `
+                })
+            } else {
+                displayWallet.innerHTML = `
+                <div class="p-3 bg-light rounded-3 shadow-md d-block w-25 mx-auto">
+                    <p>No Wallet Has Been Created Yet</p>
+                </div>
+                `
+            }
+        }
+
+        const openCreateWallet = () => {
+            popup.classList.add("open-popup")
+        }
+        const createWallet2 = () => {
+            let walletDetails = {
+                walletBalance: 0,
+                walletTargetAmount: targetAmount.value,
+                walletName: walletName.value
+            }
+            allBankUsers[currentBankUserIndex].wallets.push(walletDetails)
+            localStorage.setItem("allBankUsers", JSON.stringify(allBankUsers))
+            alert("sucess")
+            popup.classList.remove("open-popup")
+            showWallet()
+        }
+        const createWallet = () => {
+            popup.classList.remove("open-popup")
+        }
+
+        let walletIndex = null
+        const openAddMoney = (addingIndex) => {
+            walletIndex = addingIndex
+            popup2.classList.add("open-popup")
+        }
+
+        const addMoneyToWallet2 = (walletIndex) => {
+            if (allBankUsers[currentBankUserIndex].accountBalance >= amountToAdd.value) {
+                if (allBankUsers[currentBankUserIndex].pin == pin2.value) {
+                    allBankUsers[currentBankUserIndex].accountBalance -= amountToAdd.value
+                    allBankUsers[currentBankUserIndex].wallets[walletIndex].walletBalance += Number(amountToAdd.value)
+                    localStorage.setItem("allBankUsers", JSON.stringify(allBankUsers))
+                    showTotalWalletBalance()
+                    alert(`You have successfully added ${amountToAdd.value} to ${allBankUsers[currentBankUserIndex].wallets[walletIndex].walletName}`)
+                    amountToAdd.value = ""
+                    pin2.value = ""
+                    popup2.classList.remove("open-popup")
+                } else {
+                    displayError2.innerText = `Wrong Pin`
+                }
+            } else {
+                displayError2.innerText = `Insufficient Balance`
+            }
+        }
+        const addMoneyToWallet = () => {
+            amountToAdd.value = ""
+            pin2.value = ""
+            popup2.classList.remove("open-popup")
+        }
+
+        const openDeleteWallet = (index) => {
+            popup3.classList.add("open-popup")
+            walletIndex = index
+        }
+        const deleteWallet2 = (walletIndex) => {
+            allBankUsers[currentBankUserIndex].wallets.splice(walletIndex, 1)
+            localStorage.setItem("allBankUsers", JSON.stringify(allBankUsers))
+            popup3.classList.remove("open-popup")
+            showTotalWalletBalance()
+        }
+        const deleteWallet = (walletIndex) => {
+            popup3.classList.remove("open-popup")
+        }
+
+        const viewSmallChart = () => {
+            popup4.classList.add("open-popup")
+            smallView.style.width = `${(window.innerWidth - 50)}px`
+
+        }
+        const closeSmallChart = () => {
+            popup4.classList.remove("open-popup")
+        }
+
+
+        let chartTypes = "doughnut"
+        const drawChart = () => {
+            var xValues = [];
+            var yValues = [];
+            var barColors = ["red", "green", "blue", "orange", "brown"];
+            allBankUsers[currentBankUserIndex].wallets.map((wallet) => {
+                xValues.push(wallet.walletName)
+                yValues.push(wallet.walletBalance)
+            })
+
+            if (yValues.length>0) {
+                new Chart("walletChart", {
+                    type: `${chartTypes}`,
+                    data: {
+                        labels: xValues,
+                        datasets: [{
+                            backgroundColor: barColors,
+                            data: yValues
+                        }]
+                    },
+                    options: {
+                        legend: { display: true },
+                        title: {
+                            display: true,
+                            text: "Wallet Summary"
+                        }
+                    }
+                });
+            } else {
+                // alert("noooo")
+                var canvas = document.getElementById("walletChart");
+                var ctx = canvas.getContext("2d");
+                ctx.font = "20px Arial";
+                ctx.fillStyle = "red";
+                ctx.textAlign = "center";
+                ctx.fillText(`You have no wallet created`, canvas.width/2, canvas.height/2);
+                ctx.fillText(`Your wallet chart will be displayed here`, canvas.width/2, (canvas.height/2)+40);
+            }
+        }
+
+        document.getElementById("chartType").addEventListener("change", () => {
+            chartTypes = chartType.value
+            drawChart()
+        })
+    </script>
+</body>
+
+</html>

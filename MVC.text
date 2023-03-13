@@ -12,7 +12,9 @@ DATA STRUCTURE -
         accNo,
         PIN,
         accBal,
-        history
+        history = [],
+        request = [],
+        wallets = [wallet],
     }
     history = array [
         transaction details : object {
@@ -24,3 +26,16 @@ DATA STRUCTURE -
             transactionBeneficiaryAccountName,
         }
     ]
+    request = array [
+        requestDetails : object {
+            requestAmount,
+            requestUserName,
+            requestDescribtion,
+            requestDate,
+            requestAccountNumber
+        }
+    ]
+        wallet: object{
+            walletTargetAmount,
+            
+        }

@@ -6,19 +6,108 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="title">History | PROADE BANK</title>
     <link rel="shortcut icon" href="icon.png" type="image/x-icon">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-<style>
-    @media (max-width: 768px) {
-        .smallDeviceWidth{
-            width: 100% !important;
+    <link rel="stylesheet" href="../bootstrap-5.2.2-dist/css/bootstrap.css">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"> -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'poppins', sans-serif;
         }
-    }
-</style>
+
+        .containerp {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btnp {
+            padding: 10px 60px;
+            background: #fff;
+            border: 0;
+            outline: none;
+            cursor: pointer;
+            font-size: 22px;
+            font-weight: 500;
+            border-radius: 30px;
+        }
+
+        .popup {
+            width: 400px;
+            background: #fff;
+            border-radius: 6px;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.1);
+            text-align: center;
+            padding: 0 30px 30px;
+            color: #333;
+            visibility: hidden;
+            transition: transform 0.4s, top 0.4s;
+        }
+
+        .open-popup {
+            visibility: visible;
+            top: 50%;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .popup h2 {
+            font-size: 38px;
+            font-weight: 500;
+            margin: 30px 0 10px;
+        }
+
+        .popup #button1 {
+            width: 100%;
+            margin-top: 50px;
+            padding: 10px 0;
+            background: #198754;
+            color: #fff;
+            border: 0;
+            outline: none;
+            font-size: 18px;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width:700px) {
+            .popup {
+                width: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .smallDeviceWidth {
+                width: 100% !important;
+            }
+        }
+
+        .hand {
+            cursor: pointer;
+        }
+        .smallFont{
+            font-size: 10px;
+        }
+    </style>
 <body style="height: 100vh;" onload="showHistory()">
-    <div class="smallDeviceWidth h-100 w-50 bg-dark d-block mx-auto overflow-auto">
+    <div class="smallDeviceWidth h-100 w-50 bg-info d-block mx-auto overflow-auto">
         <h4 class="text-light">All Transaction History</h4>
-        <a href="bankDashboard.html" class="float-end me-3">Go to dashboard</a>
-        <div id="display" class="mt-5"></div>
+        <p class="float-end">Go to <a href="bankDashboard.html" class="text-decoration-none text-light me-3">Dashboard</a></p>
+        <div id="display" class="mt-5 p-3"></div>
+    </div>
+
+
+    <div class="containerp">
+        <div class="popup" id="popup6">
+            <button type="button" class="btn-close ms-auto d-block my-2" onclick="closeViewHistory()"
+                aria-label="Close"></button>
+            <div id="historyFullDetails"></div>
+            <button type="button" id="button1" onclick="closeViewHistory()">Close</button>
+        </div>
     </div>
     <script>
         let allBankUsers = JSON.parse(localStorage.getItem("allBankUsers"))
@@ -27,9 +116,38 @@
         const showHistory = ()=>{
             allBankUsers[currentBankUserIndex].transactionHistory.reverse().map((history, index)=>{
                 display.innerHTML += `
-                <p class="d-block p-2 rounded-pill text-light">${history.transactionBeneficiaryName} <span class="ms-3">${history.transactionAmount}</span> <span class="float-end me-1">${history.transactionBeneficiaryBankName}</span></p>
-                `
+                <div class="bg-light shadow-md founded-3 my-2 p-2 rounded-3" onclick="viewFullHistory(${index})">
+                    <p class="my-1 text-dark">Transaction Amount: <span id="amount${index}">${history.transactionAmount}</span></p>
+                    <p class="my-1 text-dark">Transaction Type: ${history.transactionType}</p>    
+                    <p class="my-1 text-dark">Transaction Status: ${history.transactionStatus}</p>    
+                </div> `
+                if (history.transactionClass=="Debit") {
+                    document.getElementById(("amount"+index)).classList.add("text-danger")
+                } else {
+                    document.getElementById(("amount"+index)).classList.add("text-success")
+                }
             })
+        }
+
+        const viewFullHistory =(index)=>{
+            popup6.classList.add("open-popup")
+            let currentView = allBankUsers[currentBankUserIndex].transactionHistory[index]
+            historyFullDetails.innerHTML = `
+                <p class="my-1 text-dark">Beneficiary Name: ${currentView.transactionBeneficiaryName}</p>    
+                <p class="my-1 text-dark">Transaction Amount: <span id="amount">${currentView.transactionAmount}</span></p>
+                <p class="my-1 text-dark">Transaction Type: ${currentView.transactionType}</p>    
+                <p class="my-1 text-dark">Transaction Status: ${currentView.transactionStatus}</p>
+                <p class="my-1 text-dark">Beneficiary Bank: ${currentView.transactionBeneficiaryBankName}</p>
+                <p class="my-1 text-dark">Transaction Date: ${currentView.transactionDate}</p>
+            `
+            if (history.transactionClass=="Debit") {
+                    document.getElementById(("amount")).classList.add("text-danger")
+                } else {
+                    document.getElementById(("amount")).classList.add("text-success")
+                }
+        }
+        const closeViewHistory =()=>{
+            popup6.classList.remove("open-popup")
         }
     </script>
 </body>
