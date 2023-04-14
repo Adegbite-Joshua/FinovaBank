@@ -6,10 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="title">Home Page</title>
-    <link rel="shortcut icon" href="icon.png" type="image/x-icon">
-    <link rel="stylesheet" href="../bootstrap-5.2.2-dist/css/bootstrap.css">
+    <link rel="shortcut icon" href="" id="favicon" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link href="fontawesome-free-6.1.1-web/css/all.min.css" rel="stylesheet" />
     <script src="./CHART JS/chart.js"></script>
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"> -->
     <style>
         * {
             margin: 0;
@@ -94,11 +95,24 @@
         .smallFont{
             font-size: 10px;
         }
+        .copiedDiv {
+            width: 300px;
+            height: 50px;
+            background-color: blueviolet;
+            position: absolute;
+            box-shadow: 0 0 6px red;
+            top: 0;
+            right: 0;
+            color: white;
+            align-items: center;
+            border-bottom: 5px solid gold;
+            z-index: 9999999999;
+        }
     </style>
 
-<body style="overflow-x: hidden;" onload="displayDetails()" class="row bg-warning">
+<body style="overflow-x: hidden;" onload="displayDetails()" class="row bg-warning position-relative">
     <div style="height: 100vh;" class="smallDeviceWidth bg-warning h-100 col-12 col-md-5">
-        <div class="pt-3"><img src="gift.png" alt="" style="height: 50px; width: 50px; border-radius: 50%;"
+        <div onclick="window.location.href='bankProfile.html'" class="pt-3"><img src="" id="profileImage" alt="" style="height: 50px; width: 50px; border-radius: 50%;"
                 class="ms-5 me-2">
             <h2 class="text-light d-inline" id="bankUserName"></h2><button class="ms-auto me-3 btn btn-info d-block"
                 onclick="signOut()">Sign Out</button>
@@ -115,6 +129,7 @@
             <div class="w-75 rounded-5 d-block mx-auto bg-info rounded-3 d-flex align-items-center justify-content-center flex-column" style="height: 200px;"> 
                 <p>Card Number</p>
                 <h4 id="showCardNum" style="letter-spacing: 5px;"></h4>
+                <span onclick="copyCardNumber(event)" class="fa fa-copy"></span>
             </div>
         </div>
         <p class="text-light text-center">Account Number: <span id="accountNumber"></span></p>
@@ -232,7 +247,9 @@
             <button type="button" id="button1" onclick="closeViewHistory()">Close</button>
         </div>
     </div>
-
+    <div id="copiedDiv" class="copiedDiv" style="display: none;">
+        <p>Card number successfully copied</p>
+    </div>
     <script>
         if (!localStorage.currentBankUserIndex) {
             alert("No user found")
@@ -250,6 +267,8 @@
             bankUserName.innerText = `${allBankUsers[currentBankUserIndex].firstName} ${allBankUsers[currentBankUserIndex].lastName}`
             mainBalance.innerText = `${allBankUsers[currentBankUserIndex].accountBalance}`
             accountNumber.innerText = `${allBankUsers[currentBankUserIndex].accountNumber}`
+            profileImage.src = allBankUsers[currentBankUserIndex].profileImg
+            document.querySelector("#favicon").href = allBankUsers[currentBankUserIndex].profileImg 
             let totalWalletBalancee = 0
             allBankUsers[currentBankUserIndex].wallets.map((wallet) => {
                 totalWalletBalancee += Number(wallet.walletBalance)
@@ -345,7 +364,7 @@
             }
         }
         const openTransfer = () => {
-            popup.classList.add("open-popup")
+            document.getElementById("popup").classList.add("open-popup")
         }
         const fetchName = () => {
             if (beneficiaryBank.value == "PROADE") {
@@ -623,6 +642,12 @@
             window.location.href = "bankHistoryPage.html"
         }
 
+        const copyCardNumber =(e)=>{
+            navigator.clipboard.writeText(e.target.previousElementSibling.innerText)
+            copiedDiv.style.display = "flex"
+                setTimeout(() => copiedDiv.style.display = "none", 3000);
+            }
+
 
         var xValues = [];
         var yValues = [];
@@ -667,7 +692,7 @@
         let debit = 0
         // var barColors = ["red", "green", "blue", "orange", "brown"];
         // allBankUsers[currentBankUserIndex].wallets.map((wallet)=>{
-            if (allBankUsers[currentBankUserIndex].transactionHistory.legend>0) {
+            if (allBankUsers[currentBankUserIndex].transactionHistory.length>0) {
                 allBankUsers[currentBankUserIndex].transactionHistory.map((history)=>{
                 if (history.transactionClass=="Credit") {
                     credit += history.transactionAmount
@@ -679,7 +704,7 @@
                     debits = eval(debit)
                 }
             })
-            // console.log(credits)
+            console.log(credits)
             var xxValues = ["Credit", "Debit"];
             var yyValues = [`${credits}`, `${debit}`];
         // })
