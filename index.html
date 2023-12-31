@@ -1,24 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PROADE BANK</title>
+    <title>Welcome to Finova Bank</title>
     <link rel="stylesheet" href="../bootstrap-5.2.2-dist/css/bootstrap.css">
+    <link rel="shortcut icon" href="/assets/icon.png" type="image/x-icon">
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"> -->
-<style>
-    @media (max-width: 800px){
-        .smallDeviceWidth{
-            width: 80% !important;
+    <style>
+        * {
+            padding: 0 !important;
+            margin: 0 !important;
         }
-    }
-</style>
-<body style="height: 100vh; width: 100vw;">
-    <div style="width: 35%; height: 95%;" class="bg-warning d-block mx-auto rounded-5 smallDeviceWidth">
-        <img src="icon.png" alt="" class="h-75 w-75 mx-auto d-block">
-        <h1 class="my-2 text-center text-light">Let's Start Something Big With Us</h1>
-        <div class="d-flex justify-content-center"><p class="text-light bg-info d-inline-block mx-auto bg-opacity-50 text-center p-1 rounded-3">Click Here To <a href="bankSignUpPage.html"><button class="btn btn-sm btn-warning">Sign Up</button></a>or  <a href="bankSignInPage.html"><button class="btn btn-sm btn-warning">Sign In</button></a></p></div>
+
+        @media (max-width: 800px) {
+            .smallDeviceWidth {
+                width: 80% !important;
+            }
+        }
+    </style>
+</head>
+
+<body style="height: 100vh; max-width: 100vw; overflow-x: hidden !important;" class="">
+    <!-- Navigation Bar -->
+    <div class="d-flex p-2 justify-content-between position-sticky top-0"
+        style="height: 100px; z-index: 999999; background: gray;">
+        <div class="d-flex flex-sm-col justify-content-center align-items-center gap-3" style="height: 60px;">
+            <img class="h-100" src="assets/icon.png" alt="Finova Bank Logo">
+            <p>Finova Bank</p>
+        </div>
+        <div class="d-flex flex-sm-col justify-content-center align-items-center gap-3">
+            <a href="" class="text-decoration-none">Create Account</a>
+            <a href="" class="text-decoration-none">Log In</a>
+            <a href="" class="text-decoration-none">About Us</a>
+        </div>
     </div>
+
+    <!-- Main Content Section -->
+    <div class="container-fluid p-5">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="assets/icon.png" alt="Finova Bank Logo" class="img-fluid">
+            </div>
+            <div class="col-md-6 d-flex align-items-center">
+                <div>
+                    <h1 class="my-2 text-center text-warning">Welcome to Finova Bank</h1>
+                    <p class="text-center text-warning mb-4">Empowering Your Financial Journey</p>
+                    <div class="text-light bg-info text-center p-3 rounded-3">
+                        <p class="">
+                            Explore our comprehensive range of banking services designed to meet your unique financial needs. From seamless online account creation to secure and convenient login options, we're here to make your banking experience straightforward and rewarding.
+                        </p>
+                        <p class="mt-3">
+                            Click here to
+                            <a href="bankSignUpPage.html"><button class="btn btn-sm btn-warning p-2">Sign Up</button></a> or
+                            <a href="bankSignInPage.html"><button class="btn btn-sm btn-warning p-2">Sign In</button></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Us Section -->
+    <div class="container mx-auto mt-5 p-2">
+        <div class="row">
+            <div class="col-lg-6">
+                <h2 class="text-success mb-4">Who We Are</h2>
+                <p>
+                    At Finova Bank, we are more than just a bank; we are your financial partner on the journey to
+                    success. Our mission is to provide innovative banking solutions that empower individuals and
+                    businesses to achieve their financial goals.
+                </p>
+                <p>
+                    With a commitment to security, transparency, and customer satisfaction, we strive to redefine the
+                    way you experience banking. Our team of experts is dedicated to delivering cutting-edge financial
+                    services tailored to your needs.
+                </p>
+            </div>
+            <div class="col-lg-6">
+                <img src="assets/about2.webp" alt="About Us Image" class="img-fluid">
+            </div>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <div class="container mx-auto mt-5 p-2">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="text-warning mb-4">Our Services</h2>
+                <p class="lead">
+                    Discover a wide array of services designed to simplify your financial life and help you achieve your
+                    goals.
+                </p>
+            </div>
+        </div>
+        <div class="row mt-4 gap-2 justify-content-center align-items-center mx-auto">
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="assets/service1.jpg" class="card-img-top" alt="Service 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Online Banking</h5>
+                        <p class="card-text">Manage your accounts, pay bills, and transfer funds securely from the
+                            comfort of your home.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="assets/service2.jpg" class="card-img-top" alt="Service 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Mobile Banking</h5>
+                        <p class="card-text">Bank on the go with our feature-rich mobile app. Access your accounts
+                            anytime, anywhere.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="assets/service3.jpg" class="card-img-top" alt="Service 3">
+                    <div class="card-body">
+                        <h5 class="card-title">Personalized Support</h5>
+                        <p class="card-text">Our dedicated support team is ready to assist you with any inquiries or
+                            concerns you may have.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Us Section -->
+    <div class="container mx-auto mt-5 p-2">
+        <div class="row">
+            <div class="col-lg-6">
+                <h2 class="text-info mb-4">Contact Us</h2>
+                <p>
+                    Have questions or need assistance? Reach out to our friendly support team.
+                </p>
+                <p>
+                    <strong>Email:</strong> <a
+                        href="mailto:adegbitejoshua07@gmail.com">adegbitejoshua07@gmail.com</a><br>
+                    <strong>Phone:</strong> <a href="tel:+2347015886456">+2347015886456</a>
+                </p>
+            </div>
+            <div class="col-lg-6">
+                <img src="assets/contact2.webp" alt="Contact Us Image" class="img-fluid">
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Footer Section -->
+    <footer class="bg-dark text-light text-center py-3 mt-5">
+        <p>&copy; 2023 Finova Bank. All rights reserved.</p>
+    </footer>
+
 </body>
+
 </html>

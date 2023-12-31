@@ -109,10 +109,14 @@
             border-bottom: 5px solid gold;
             z-index: 9999999999;
         }
+        ::-webkit-scrollbar{
+            width: 0;
+            height: 0;
+        }
     </style>
 
-<body style="overflow-x: hidden;" onload="displayDetails()" class="row bg-warning position-relative">
-    <div style="height: 100vh;" class="smallDeviceWidth bg-warning h-100 col-12 col-md-5">
+<body style="overflow: auto;" onload="displayDetails()" class="row bg-warning position-relative">
+    <div style="height: 100vh; overflow: hidden;" class="smallDeviceWidth bg-warning h-100 col-12 col-md-5">
         <div class="pt-3 hand"><img onclick="window.location.href='bankProfile.html'" src="" id="profileImage" alt="" style="height: 50px; width: 50px; border-radius: 50%;" class="ms-5 me-2">
             <h2 onclick="window.location.href='bankProfile.html'" class="text-light d-inline" id="bankUserName"></h2><button class="ms-auto me-3 btn btn-info d-block" onclick="signOut()">Sign Out</button>
         </div>
@@ -152,7 +156,7 @@
             </div>
         </div>
     </div>
-    <div style="height: 100vh;" class="smallDeviceWidth bg-danger col-12 col-md-4">
+    <div style="height: 100vh; overflow: hidden;" class="smallDeviceWidth col-12 col-md-4">
         <div class="d-block mx-auto h-50">
             <h4 class="p-3 bg-light rounded-3 shadow-md m-3 text-center position-relative">Money Requests <span class="position-absolute top-0 start-100 badge translate-middle bg-info rounded-pill p-1" id="requestNumber"></span> <button id="viewRequest" class="btn btn-sm position-absolute top-100 start-100 badge translate-middle btn-info rounded-pill p-1"></button></h4>
             <div id="displayRequest">

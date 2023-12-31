@@ -32,12 +32,12 @@
         border-bottom: 5px solid gold;
     }
 </style>
-<body onload="displayUserProfile()" class="position-relative">
+<body onload="displayUserProfile()" class="position-relative bg-warning">
     <div style="height: 100vh;" class="smallDeviceWidth w-50 d-block mx-auto position-relative">
         <h1 onclick="window.location.href='bankDashboard.html'" class="position-fixed top-0 left-0 text-light" style="z-index: 999;">&#10094;</h1>
-        <div id="profileDiv" class="w-100 h-100 bg-success text-light p-3 position-relative">
+        <div id="profileDiv" class="w-100 h-100 bg-info text-light p-3 position-relative">
             <div class="position-relative">
-                <h1 class="text-center">User's Profile</h1> <img src="../4-Things-You-Should-Know-About-Space-Exploration.jpg" style="height: 70px; width: 70px;" class="float-end rounded-5" alt="">
+                <h1 class="text-center text-decoration-underline">User's Profile</h1> <img id="profilePicture" src="" style="height: 70px; width: 70px;" class="float-end rounded-5" alt="">
                 <br>
                 <h2 id="userName"></h2>
                 <p id="accNumber"></p>
@@ -107,6 +107,7 @@
             let cardNumberRegex = /^[\d]{16}$/
             let amountRegex = /^[\d]+$/
             user = allBankUsers[currentBankUserIndex]
+            profilePicture.src = user.profileImg
             userName.innerHTML = `Name: <span class="float-end me-3">${user.firstName} ${user.lastName}</span>`
             accNumber.innerHTML = `Account Number: <span class="float-end me-3">${user.accountNumber}</span><span onclick="copyAccountNumber(event)" class="fa fa-copy float-end me-3"></span>`
             email.innerHTML = `E-mail: <span class="float-end me-3">${user.eMail}</span>`
