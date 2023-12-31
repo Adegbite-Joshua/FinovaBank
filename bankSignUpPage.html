@@ -29,12 +29,27 @@
 </head>
 
 <body onload="typeNote()">
+
+    <!-- Navigation Bar -->
+    <div class="bg-dark d-flex p-2 justify-content-between position-sticky top-0"
+        style="height: 100px; z-index: 999999;">
+        <div class="d-flex flex-sm-col justify-content-center align-items-center gap-3" style="height: 60px;">
+            <img class="h-100" src="assets/icon.png" alt="Finova Bank Logo">
+            <p>Finova Bank</p>
+        </div>
+        <div class="d-flex flex-sm-col justify-content-center align-items-center gap-3">
+            <a href="" class="text-decoration-none">Create Account</a>
+            <a href="" class="text-decoration-none">Log In</a>
+            <a href="" class="text-decoration-none">About Us</a>
+        </div>
+    </div>
+
+
     <div class="smallDeviceWidth w-50 d-block mx-auto">
-        <marquee behavior="" direction="left" class="my-5 mx-5">
-            <h1>Welcome to Finova Bank</h1>
-        </marquee>
+        <!-- <marquee behavior="" direction="left" class="my-5 mx-5">
+            <h1>Finova Bank</h1>
+        </marquee> -->
         <h3 class="text-center" id="welcomeNote"></h3>
-        <p class="lead text-center mb-4">Your Gateway to Modern Banking Solutions</p>
         <input name="firstName" type="text" placeholder="First Name" id="firstName" class="form-control mt-3 my-2">
         <input name="lastName" type="text" placeholder="Last Name" id="lastName" class="form-control my-2">
         <input name="phoneNumber" type="text" placeholder="Phone Number" id="phoneNumber" class="form-control my-2">
@@ -44,17 +59,23 @@
         <input name="pin" type="number" placeholder="PIN" id="pin" minlength="4" maxlength="4" min="1000" max="9999"
             class="form-control my-2">
         <p id="displayError" class="text-danger text-center"></p>
-        <div class="w-100 row" style="height: 250px;">
-            <input type="file" accept=".jpeg, .jpg, .png" required class="form-control w-50 my-auto col-6"
+        <div class="w-100" style="height: 250px;">
+            <input type="file" accept=".jpeg, .jpg, .png" required class="form-control w-100 my-auto col-6 d-none"
                 id="profileImage">
-            <div id="profileDiv"
-                class="col-6 h-100 border border-2 rounded-circle bg-danger d-flex justify-content-center align-items-center">
-                <h1 class="text-center">Profile Image</h1>
-            </div>
+            <label for="profileImage" id="profileDiv"
+                class="h-100 w-50 mx-auto border border-2 rounded-circle bg-danger d-flex justify-content-center align-items-center">
+                <h1 class="text-center">Image</h1>
+            </label>
         </div>
         <button onclick="signUp()" class="w-100 mx-auto btn btn-success">Sign Up</button>
-        <p class="text-center mt-3">Already have an account? <a href="bankSignInPage.html">Sign In</a></p>
+        <a href="bankSignInPage.html">Go to Sign In</a>
     </div>
+
+
+    <!-- Footer Section -->
+    <footer class="bg-dark text-light text-center py-3 mt-5">
+        <p>&copy; 2023 Finova Bank. All rights reserved.</p>
+    </footer>
 
     <script>
         let text = "Welcome to Finova Bank - Sign Up"
