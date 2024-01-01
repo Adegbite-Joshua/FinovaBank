@@ -6,9 +6,9 @@ const set_nav_bar = () => {
                                                         <p>Finova Bank</p>
                                                     </div>
                                                     <div class="d-flex flex-sm-col justify-content-center align-items-center gap-3">
-                                                        <a href="" class="text-decoration-none">Create Account</a>
-                                                        <a href="" class="text-decoration-none">Log In</a>
-                                                        <a href="" class="text-decoration-none">About Us</a>
+                                                        <a href="bankSignUpPage.html" class="text-decoration-none">Create Account</a>
+                                                        <a href="bankSignInPage.html" class="text-decoration-none">Log In</a>
+                                                        <a href="aboutUs.html" class="text-decoration-none">About Us</a>
                                                     </div>
                                                 </div>`
 }
