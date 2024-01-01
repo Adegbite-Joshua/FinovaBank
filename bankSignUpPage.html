@@ -30,19 +30,8 @@
 
 <body onload="typeNote()">
 
-    <!-- Navigation Bar -->
-    <div class="bg-dark d-flex p-2 justify-content-between position-sticky top-0"
-        style="height: 100px; z-index: 999999;">
-        <div class="d-flex flex-sm-col justify-content-center align-items-center gap-3" style="height: 60px;">
-            <img class="h-100" src="assets/icon.png" alt="Finova Bank Logo">
-            <p>Finova Bank</p>
-        </div>
-        <div class="d-flex flex-sm-col justify-content-center align-items-center gap-3">
-            <a href="" class="text-decoration-none">Create Account</a>
-            <a href="" class="text-decoration-none">Log In</a>
-            <a href="" class="text-decoration-none">About Us</a>
-        </div>
-    </div>
+       <!-- Navigation Bar -->
+       <div id="nav_bar"></div>
 
 
     <div class="smallDeviceWidth w-50 d-block mx-auto">
@@ -77,6 +66,7 @@
         <p>&copy; 2023 Finova Bank. All rights reserved.</p>
     </footer>
 
+    <script src="index.js"></script>
     <script>
         let text = "Welcome to Finova Bank - Sign Up"
         let i = 0
