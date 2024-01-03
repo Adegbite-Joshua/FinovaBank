@@ -1,4 +1,7 @@
 const set_nav_bar = () => {
+    if (!document.getElementById('nav_bar')?.innerHTML) {
+        return;
+    }
     document.getElementById('nav_bar').innerHTML = `<div class="d-flex p-2 justify-content-between position-sticky top-0"
                                                     style="height: 100px; z-index: 999999; background: gray;">
                                                     <div class="d-flex flex-sm-col justify-content-center align-items-center gap-3" style="height: 60px;">
@@ -14,3 +17,22 @@ const set_nav_bar = () => {
 }
 
 window.onload = set_nav_bar()
+
+const showToast = () => {
+    const toast = document.getElementById('toast');
+
+    toast.style.opacity = 1;
+    toast.style.display = 'block';
+
+    setTimeout(() => {
+        toast.style.opacity = 0;
+    }, 2000);
+
+    setTimeout(() => {
+        toast.style.display = 'none';
+    }, 2500);
+};
+
+if (document.getElementById('showToast')?.addEventListener) {
+    document.getElementById('showToast')?.addEventListener('click', showToast);
+}

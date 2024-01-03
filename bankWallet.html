@@ -10,6 +10,7 @@
     <link rel="shortcut icon" href="./icon.png" type="image/x-icon">
     <script src="./CHART JS/chart.js"></script>
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <style>
     * {
@@ -37,7 +38,7 @@
     }
 
     .popup {
-        width: 400px;
+        max-width: 400px;
         background: #fff;
         border-radius: 6px;
         position: absolute;
@@ -79,7 +80,7 @@
 
     @media (max-width:700px) {
         .popup {
-            width: 600px;
+            min-width: 250px;
         }
     }
 
@@ -100,11 +101,14 @@
 
 <body onload="showTotalWalletBalance()" class="bg-warning" style="overflow-x: hidden;">
     <div class="smallDeviceWidth w-75 bg-info d-block mx-auto my-3 rounded-5">
-        <h2 class="text-center text-danger fw-bold p-3">PROADE BANK</h2>
+        <h1 onclick="window.location.href='bankDashboard.html'"
+            class="position-fixed ms-3 mt-3 top-0 left-0 text-light cursor-pointer" style="z-index: 999;">&#10094;</h1>
+        <h2 class="text-center text-danger fw-bold p-3">Finova Bank</h2>
         <div>
             <h3 id="userName" class="ms-5 "></h3>
             <h5 class="ms-5 text-warning d-inline-block">Wallets</h5>
-            <button class="btn btn-success ms-auto d-block me-5" onclick="openCreateWallet()">Create New Wallets</button>
+            <button class="btn btn-success ms-auto d-block me-5" onclick="openCreateWallet()">Create New
+                Wallets</button>
             <button onclick="viewSmallChart()" class="btn btn-success d-inline mx-3 d-md-none">View Chart</button>
             <p class="ms-5">Total Wallets Balance <span id="totalWalletBalance"></span></p>
         </div>
@@ -119,10 +123,9 @@
                 <option value="bar">Bar Chart</option>
                 <option value="line">Line Chart</option>
             </select>
-            <canvas class="walletChart" style="border: 2px solid red; height: 2oopx; width: 200px;"></canvas>
+            <canvas class="walletChart" style="border: 2px solid red; height: 200px; width: 200px;"></canvas>
         </div>
     </div>
-
 
     <div class="containerp">
         <div class="popup" id="popup">
@@ -150,11 +153,14 @@
         <div class="popup" id="popup3">
             <button type="button" class="btn-close ms-auto d-block my-2" onclick="deleteWallet()"
                 aria-label="Close"></button>
-            <p class="text-danger">Are you sure you want to delete this wallet? Your wallet balance will be added to your
+            <p class="text-danger">Are you sure you want to delete this wallet? Your wallet balance will be added to
+                your
                 main account balance</p>
             <button type="button" id="button1" onclick="deleteWallet2(walletIndex)">Delete Wallet</button>
         </div>
     </div>
+
+
     <div class="containerp">
         <div class="popup" id="popup4">
             <button type="button" class="btn-close ms-auto d-block my-2" onclick="closeSmallChart()"
@@ -165,7 +171,10 @@
             <button type="button" id="button1" onclick="closeSmallChart()">Close</button>
         </div>
     </div>
-    
+
+
+    <div id="toast">Successful</div>
+
     <script>
         let allBankUsers = JSON.parse(localStorage.getItem("allBankUsers"))
         let currentBankUserIndex = JSON.parse(localStorage.getItem("currentBankUserIndex"))
@@ -217,9 +226,9 @@
             }
             allBankUsers[currentBankUserIndex].wallets.push(walletDetails)
             localStorage.setItem("allBankUsers", JSON.stringify(allBankUsers))
-            alert("sucess")
             popup.classList.remove("open-popup")
             showWallet()
+            showToast()
         }
         const createWallet = () => {
             popup.classList.remove("open-popup")
@@ -242,6 +251,7 @@
                     amountToAdd.value = ""
                     pin2.value = ""
                     popup2.classList.remove("open-popup")
+                    showToast()
                 } else {
                     displayError2.innerText = `Wrong Pin`
                 }
@@ -249,6 +259,7 @@
                 displayError2.innerText = `Insufficient Balance`
             }
         }
+
         const addMoneyToWallet = () => {
             amountToAdd.value = ""
             pin2.value = ""
@@ -260,10 +271,12 @@
             walletIndex = index
         }
         const deleteWallet2 = (walletIndex) => {
+            allBankUsers[currentBankUserIndex].accountBalance += Number(allBankUsers[currentBankUserIndex].wallets[walletIndex].walletBalance)
             allBankUsers[currentBankUserIndex].wallets.splice(walletIndex, 1)
             localStorage.setItem("allBankUsers", JSON.stringify(allBankUsers))
             popup3.classList.remove("open-popup")
             showTotalWalletBalance()
+            showToast()
         }
         const deleteWallet = (walletIndex) => {
             popup3.classList.remove("open-popup")
@@ -288,36 +301,34 @@
                 xValues.push(wallet.walletName)
                 yValues.push(wallet.walletBalance)
             })
-            // let allChart = document.querySelectorAll(".walletChart")
             document.querySelectorAll(".walletChart").forEach(element => {
-                if (yValues.length>0) {
-                new Chart(element, {
-                    type: `${chartTypes}`,
-                    data: {
-                        labels: xValues,
-                        datasets: [{
-                            backgroundColor: barColors,
-                            data: yValues
-                        }]
-                    },
-                    options: {
-                        legend: { display: true },
-                        title: {
-                            display: true,
-                            text: "Wallet Summary"
+                if (yValues.length > 0) {
+                    new Chart(element, {
+                        type: `${chartTypes}`,
+                        data: {
+                            labels: xValues,
+                            datasets: [{
+                                backgroundColor: barColors,
+                                data: yValues
+                            }]
+                        },
+                        options: {
+                            legend: { display: true },
+                            title: {
+                                display: true,
+                                text: "Wallet Summary"
+                            }
                         }
-                    }
-                });
-            } else {
-                // alert("noooo")
-                var canvas = document.getElementById("walletChart");
-                var ctx = canvas.getContext("2d");
-                ctx.font = "20px Arial";
-                ctx.fillStyle = "red";
-                ctx.textAlign = "center";
-                ctx.fillText(`You have no wallet created`, canvas.width/2, canvas.height/2);
-                ctx.fillText(`Your wallet chart will be displayed here`, canvas.width/2, (canvas.height/2)+40);
-            }
+                    });
+                } else {
+                    var canvas = document.getElementById("walletChart");
+                    var ctx = canvas.getContext("2d");
+                    ctx.font = "20px Arial";
+                    ctx.fillStyle = "red";
+                    ctx.textAlign = "center";
+                    ctx.fillText(`You have no wallet created`, canvas.width / 2, canvas.height / 2);
+                    ctx.fillText(`Your wallet chart will be displayed here`, canvas.width / 2, (canvas.height / 2) + 40);
+                }
             })
         }
 
@@ -325,6 +336,21 @@
             chartTypes = chartType.value
             drawChart()
         })
+
+        const showToast = () => {
+            const toast = document.getElementById('toast');
+
+            toast.style.opacity = 1;
+            toast.style.display = 'block';
+
+            setTimeout(() => {
+                toast.style.opacity = 0;
+            }, 2000);
+
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 2500);
+        };
     </script>
 </body>
 

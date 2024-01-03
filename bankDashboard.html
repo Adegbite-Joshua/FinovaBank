@@ -10,8 +10,10 @@
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="../bootstrap-5.2.2-dist/css/bootstrap.css">
-    <link href="fontawesome-free-6.1.1-web/css/all.min.css" rel="stylesheet" />
+    <link href="fontawesome-free-6.4.0-web/css/all.css" rel="stylesheet" />
+    <link href="fontawesome-free-6.4.0-web/css/all.min.css" rel="stylesheet" />
     <script src="./CHART JS/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
     <style>
         * {
             margin: 0;
@@ -42,7 +44,7 @@
             background: #fff;
             border-radius: 6px;
             position: absolute;
-            top: 0;
+            top: 50%;
             left: 50%;
             transform: translate(-50%, -50%) scale(0.1);
             text-align: center;
@@ -115,27 +117,24 @@
         }
     </style>
 
-<body style="overflow: auto;" onload="displayDetails()" class="row bg-warning position-relative">
-    <div style="height: 100vh; overflow: hidden;" class="smallDeviceWidth bg-warning h-100 col-12 col-md-5">
+<body style="overflow: auto; height: 100vh;" onload="displayDetails()" class="row bg-dark bg-opacity-75 position-relative">
+    <div style="min-height: 100vh; overflow: auto;" class="smallDeviceWidth h-100 col-12 col-md-5">
         <div class="pt-3 hand"><img onclick="window.location.href='bankProfile.html'" src="" id="profileImage" alt="" style="height: 50px; width: 50px; border-radius: 50%;" class="ms-5 me-2">
             <h2 onclick="window.location.href='bankProfile.html'" class="text-light d-inline" id="bankUserName"></h2><button class="ms-auto me-3 btn btn-info d-block" onclick="signOut()">Sign Out</button>
         </div>
         <div>
             <p class="text-light ms-5">Total Balance <span class="float-end me-6 hand">Main Balance</span></p>
-            <h3 class="text-light ms-5">$<span id="totalBalance"></span>.00<span class="float-end me-6 hand"> <span>$</span><span id="mainBalance"></span>.00<span></span></span></h3>
+            <h3 class="text-light ms-5">$<span id="totalBalance"></span>.00<span class="float-end me-6"> <span>$</span><span id="mainBalance"></span>.00<span></span></span></h3>
             <div class="btn-group my-2 d-flex gap-2 justify-content-center px-5">
                 <a href="bankWallet.html" class="text-decoration-none text-info fw-bold">Wallets</a>
-                <!-- <button class="btn btn-info">Wallets</button> -->
                 <span href="" onclick="showCardNumber()" class="hand text-info fw-bold">View Card Number</span>
-
             </div>
             <div class="w-75 rounded-5 d-block mx-auto bg-info rounded-3 d-flex align-items-center justify-content-center flex-column" style="height: 200px;"> 
                 <p>Card Number</p>
-                <h4 id="showCardNum" style="letter-spacing: 5px;"></h4>
-                <span onclick="copyCardNumber(event)" class="fa fa-copy"></span>
+                <h4 id="showCardNum" class="cursor-pointer" onclick="copyToClipboard(event)" style="letter-spacing: 5px;"></h4>
             </div>
         </div>
-        <p class="text-light text-center">Account Number: <span id="accountNumber"></span></p>
+        <p class="text-light text-center">Account Number: <span id="accountNumber" class="cursor-pointer" onclick="copyToClipboard(event)"></span></p>
         <p class=" text-center" style="font-weight: bolder; text-decoration: underline 3px;">Carry Out Transaction</p>
         <div class="d-flex justify-content-around">
             <div onclick="deposit()" class="hand">
@@ -175,7 +174,8 @@
         <canvas id="walletChart" class="my-2 mx-auto" width="300" height="300" style="border: 2px solid red; display: block;"></canvas>
         <canvas id="transactionChart" class="my-2 mx-auto" width="300" height="300" style="border: 2px solid red; display: block;"></canvas>
     </div>
-    
+
+    <!-- Transfer Money Popup -->
     <div class="containerp">
         <div class="popup" id="popup">
             <button type="button" class="btn-close ms-auto d-block my-2" onclick="closeTransferPopup()"
@@ -199,6 +199,8 @@
             <button type="button" id="button1" onclick="transfer()">Send</button>
         </div>
     </div>
+
+    <!-- Deposit Money Popup -->
     <div class="containerp">
         <div class="popup" id="popup2">
             <button type="button" class="btn-close ms-auto d-block my-2" onclick="closeDepositPopup2()"
@@ -210,6 +212,8 @@
             <button type="button" id="button1" onclick="closeDepositPopup()">Deposit</button>
         </div>
     </div>
+
+    <!-- Withdraw Money Popup -->
     <div class="containerp">
         <div class="popup" id="popup3">
             <button type="button" class="btn-close ms-auto d-block my-2" onclick="closeWithdrawPopup()"
@@ -221,6 +225,8 @@
             <button type="button" id="button1" onclick="closeWithdrawPopup2()">Withdraw</button>
         </div>
     </div>
+
+    <!-- Create Card Popup -->
     <div class="containerp">
         <div class="popup" id="popup4">
             <button type="button" class="btn-close ms-auto d-block my-2" onclick="closeCardNumber()"
@@ -230,6 +236,8 @@
             <button type="button" id="button1" onclick="closeCardNumber()">Close</button>
         </div>
     </div>
+
+    <!-- Request Money Popup -->
     <div class="containerp">
         <div class="popup" id="popup5">
             <button type="button" class="btn-close ms-auto d-block my-2" onclick="closeRquestMoney()"
@@ -242,6 +250,8 @@
             <button type="button" id="button1" onclick="closeRequestMoney2()">Send Request</button>
         </div>
     </div>
+
+    <!-- History -->
     <div class="containerp">
         <div class="popup" id="popup">
             <button type="button" class="btn-close ms-auto d-block my-2" onclick="closeViewHistory()"
@@ -250,9 +260,16 @@
             <button type="button" id="button1" onclick="closeViewHistory()">Close</button>
         </div>
     </div>
+
     <div id="copiedDiv" class="copiedDiv" style="display: none;">
         <p>Card number successfully copied</p>
     </div>
+
+
+    <div id="toast">Successful</div>
+
+    <!-- <script src="index.js"></script> -->
+    <script src="scripts/dashboard.js"></script>
     <script>
         if (!localStorage.currentBankUserIndex) {
             alert("No user found")
@@ -266,6 +283,7 @@
         let accountNumberRegex = /^[\d]{10}$/
         let cardNumberRegex = /^[\d]{16}$/
         let amountRegex = /^[\d]+$/
+
         const displayDetails = () => {
             bankUserName.innerText = `${allBankUsers[currentBankUserIndex].firstName} ${allBankUsers[currentBankUserIndex].lastName}`
             mainBalance.innerText = `${allBankUsers[currentBankUserIndex].accountBalance}`
@@ -318,6 +336,7 @@
         let requestAmount = 0
         let userIndex = null
         let requestName = ""
+
         const acceptRequest =(acceptIndex)=>{
             if (allBankUsers[currentBankUserIndex].accountBalance>=requestAmount) {
                 let requestConfirm = confirm(`Are you sure you want to send ${requestAmount} to ${requestName} due to the money request`)
@@ -370,6 +389,7 @@
         const openTransfer = () => {
             document.getElementById("popup").classList.add("open-popup")
         }
+
         const fetchName = () => {
             if (beneficiaryBank.value == "PROADE") {
                 allBankUsers.find((user, index) => {
@@ -491,6 +511,7 @@
         const closeDepositPopup2 = () => {
             popup2.classList.remove("open-popup")
         }
+
         const transactionsHistory = () => {
             historyDisplay.innerHTML = ""
             let bankHistory = allBankUsers[currentBankUserIndex].transactionHistory.reverse().filter((history, index) => index <= 3)
@@ -510,6 +531,7 @@
                 }
             })
         }
+        
         const viewFullHistory =(index)=>{
             popup6.classList.add("open-popup")
             let currentView = allBankUsers[currentBankUserIndex].transactionHistory[index]
@@ -527,6 +549,7 @@
                     document.getElementById(("amount")).classList.add("text-success")
                 }
         }
+        
         const closeViewHistory =()=>{
             popup6.classList.remove("open-popup")
         }
@@ -580,9 +603,11 @@
             }
 
         }
+        
         const withdraw = () => {
             popup3.classList.add("open-popup")
         }
+        
         const showCardNumber = () => {
             if (allBankUsers[currentBankUserIndex].cardNumber) {
                 cardNumber16.innerText = `Your card number:  ${allBankUsers[currentBankUserIndex].cardNumber}`
@@ -592,19 +617,24 @@
             }
             popup4.classList.add("open-popup")
         }
+        
         const closeCardNumber = () => {
             popup4.classList.remove("open-popup")
         }
+        
         const signOut = () => {
             localStorage.removeItem("currentBankUserIndex")
             window.location.href = "bankSignInPage.html"
         }
+        
         const openRequestMoney = ()=>{
             popup5.classList.add("open-popup")
         }
+        
         const closeRquestMoney =()=>{
             popup5.classList.remove("open-popup")
         }
+        
         const closeRequestMoney2 =()=>{
             if (accountNumberRegex.test(requestAccountNumber.value)) {
                 if (amountRegex.test(requestAmounte.value)) {
@@ -684,7 +714,7 @@
             var canvas = document.getElementById("walletChart");
                 var ctx = canvas.getContext("2d");
                 ctx.font = "15px Arial";
-                ctx.fillStyle = "red";
+                ctx.fillStyle = "skyblue";
                 ctx.textAlign = "center";
                 ctx.fillText(`Wallet Summary`, canvas.width/2, (canvas.height/2)-60);
                 ctx.fillText(`You have no no wallet created yet`, canvas.width/2, canvas.height/2);
@@ -701,9 +731,7 @@
                 if (history.transactionClass=="Credit") {
                     credit += history.transactionAmount
                     credits = eval(credit)
-                    // alert("yes")
                 } else if (history.transactionClass=="Debit") {
-                    // alert("no")
                     debit += history.transactionAmount
                     debits = eval(debit)
                 }
@@ -735,7 +763,7 @@
                 var canvas = document.getElementById("transactionChart");
                 var ctx = canvas.getContext("2d");
                 ctx.font = "15px Arial";
-                ctx.fillStyle = "red";
+                ctx.fillStyle = "skyblue";
                 ctx.textAlign = "center";
                 ctx.fillText(`Transaction Summary`, canvas.width/2, (canvas.height/2)-60);
                 ctx.fillText(`You have no transaction history yet`, canvas.width/2, canvas.height/2);
