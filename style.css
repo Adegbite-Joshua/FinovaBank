@@ -27,3 +27,25 @@ input[type="number"] {
 .cursor-pointer {
     cursor: pointer;
 }
+
+
+@media (max-width: 576px) {
+    .responsive, .responsive a {
+        display: block !important;
+        color: white;
+    }
+    .responsive {
+        position: absolute;
+        top: 100%;
+        right: 0%;
+        width: 300px;
+        background-color: skyblue;
+        margin: 0;
+        padding: 15px;
+    }
+    
+}
+
+.hidden {
+    display: none;
+}
