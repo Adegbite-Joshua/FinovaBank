@@ -95,9 +95,11 @@
         .hand {
             cursor: pointer;
         }
-        .smallFont{
+
+        .smallFont {
             font-size: 10px;
         }
+
         .copiedDiv {
             width: 300px;
             height: 50px;
@@ -111,30 +113,38 @@
             border-bottom: 5px solid gold;
             z-index: 9999999999;
         }
-        ::-webkit-scrollbar{
+
+        ::-webkit-scrollbar {
             width: 0;
             height: 0;
         }
     </style>
 
-<body style="overflow: auto; height: 100vh;" onload="displayDetails()" class="row bg-dark bg-opacity-75 position-relative">
+<body style="overflow: auto; height: 100vh;" onload="displayDetails()"
+    class="row bg-dark bg-opacity-75 position-relative">
     <div style="min-height: 100vh; overflow: auto;" class="smallDeviceWidth h-100 col-12 col-md-5">
-        <div class="pt-3 hand"><img onclick="window.location.href='bankProfile.html'" src="" id="profileImage" alt="" style="height: 50px; width: 50px; border-radius: 50%;" class="ms-5 me-2">
-            <h2 onclick="window.location.href='bankProfile.html'" class="text-light d-inline" id="bankUserName"></h2><button class="ms-auto me-3 btn btn-info d-block" onclick="signOut()">Sign Out</button>
+        <div class="pt-3 hand"><img onclick="window.location.href='bankProfile.html'" src="" id="profileImage" alt=""
+                style="height: 50px; width: 50px; border-radius: 50%;" class="ms-5 me-2">
+            <h2 onclick="window.location.href='bankProfile.html'" class="text-light d-inline" id="bankUserName"></h2>
+            <button class="ms-auto me-3 btn btn-info d-block" onclick="signOut()">Sign Out</button>
         </div>
         <div>
             <p class="text-light ms-5">Total Balance <span class="float-end me-6 hand">Main Balance</span></p>
-            <h3 class="text-light ms-5">$<span id="totalBalance"></span>.00<span class="float-end me-6"> <span>$</span><span id="mainBalance"></span>.00<span></span></span></h3>
+            <h3 class="text-light ms-5">$<span id="totalBalance"></span>.00<span class="float-end me-6">
+                    <span>$</span><span id="mainBalance"></span>.00<span></span></span></h3>
             <div class="btn-group my-2 d-flex gap-2 justify-content-center px-5">
                 <a href="bankWallet.html" class="text-decoration-none text-info fw-bold">Wallets</a>
                 <span href="" onclick="showCardNumber()" class="hand text-info fw-bold">View Card Number</span>
             </div>
-            <div class="w-75 rounded-5 d-block mx-auto bg-info rounded-3 d-flex align-items-center justify-content-center flex-column" style="height: 200px;"> 
+            <div class="w-75 rounded-5 d-block mx-auto bg-info rounded-3 d-flex align-items-center justify-content-center flex-column"
+                style="height: 200px;">
                 <p>Card Number</p>
-                <h4 id="showCardNum" class="cursor-pointer" onclick="copyToClipboard(event)" style="letter-spacing: 5px;"></h4>
+                <h4 id="showCardNum" class="cursor-pointer" onclick="copyToClipboard(event)"
+                    style="letter-spacing: 5px;"></h4>
             </div>
         </div>
-        <p class="text-light text-center">Account Number: <span id="accountNumber" class="cursor-pointer" onclick="copyToClipboard(event)"></span></p>
+        <p class="text-light text-center">Account Number: <span id="accountNumber" class="cursor-pointer"
+                onclick="copyToClipboard(event)"></span></p>
         <p class=" text-center" style="font-weight: bolder; text-decoration: underline 3px;">Carry Out Transaction</p>
         <div class="d-flex justify-content-around">
             <div onclick="deposit()" class="hand">
@@ -157,13 +167,20 @@
     </div>
     <div style="height: 100vh; overflow: hidden;" class="smallDeviceWidth col-12 col-md-4">
         <div class="d-block mx-auto h-50">
-            <h4 class="p-3 bg-light rounded-3 shadow-md m-3 text-center position-relative">Money Requests <span class="position-absolute top-0 start-100 badge translate-middle bg-info rounded-pill p-1" id="requestNumber"></span> <button id="viewRequest" class="btn btn-sm position-absolute top-100 start-100 badge translate-middle btn-info rounded-pill p-1"></button></h4>
+            <h4 class="p-3 bg-light rounded-3 shadow-md m-3 text-center position-relative">Money Requests <span
+                    class="position-absolute top-0 start-100 badge translate-middle bg-info rounded-pill p-1"
+                    id="requestNumber"></span> <button id="viewRequest"
+                    class="btn btn-sm position-absolute top-100 start-100 badge translate-middle btn-info rounded-pill p-1"></button>
+            </h4>
             <div id="displayRequest">
-                
+
             </div>
         </div>
         <div class="d-block mx-auto h-50">
-            <h4 class="p-3 bg-light rounded-3 shadow-md m-3 text-center position-relative">Recent Transactions History <button id="viewHistory" class="btn btn-sm position-absolute top-100 start-100 badge translate-middle btn-info rounded-pill p-1" onclick="goToHistoryPage()">View All</button></h4>
+            <h4 class="p-3 bg-light rounded-3 shadow-md m-3 text-center position-relative">Recent Transactions History
+                <button id="viewHistory"
+                    class="btn btn-sm position-absolute top-100 start-100 badge translate-middle btn-info rounded-pill p-1"
+                    onclick="goToHistoryPage()">View All</button></h4>
             <div class="text-light" id="historyDisplay">
                 <!-- <h3>Recent History <a class="float-end me-0 me-sm-5" href="bankHistoryPage.html">View All</a></h3> -->
                 <div></div>
@@ -171,8 +188,10 @@
         </div>
     </div>
     <div style="height: 100vh;" class="smallDeviceWidth col-12 col-md-3">
-        <canvas id="walletChart" class="my-2 mx-auto" width="300" height="300" style="border: 2px solid red; display: block;"></canvas>
-        <canvas id="transactionChart" class="my-2 mx-auto" width="300" height="300" style="border: 2px solid red; display: block;"></canvas>
+        <canvas id="walletChart" class="my-2 mx-auto" width="300" height="300"
+            style="border: 2px solid red; display: block;"></canvas>
+        <canvas id="transactionChart" class="my-2 mx-auto" width="300" height="300"
+            style="border: 2px solid red; display: block;"></canvas>
     </div>
 
     <!-- Transfer Money Popup -->
@@ -185,13 +204,13 @@
                 id="beneficiaryAccountNumber">
             <p id="beneficiaryName"></p>
             <select name="" id="beneficiaryBank" class="form-control my-2" onchange="fetchName()">
-                <option value="null" selected>Select Bank</option>
-                <option value="PROADE">PROADE BANK</option>
+                <!-- <option value="null" selected>Select Bank</option>
+                <option value="Finova">Finova Bank</option>
                 <option value="Zenith">Zenith Bank</option>
                 <option value="Access">Access Bank</option>
                 <option value="GT">GT Bank</option>
                 <option value="Kuda">Kuda Microfinance Bank</option>
-                <option value="OPay">OPay</option>
+                <option value="OPay">OPay</option> -->
             </select>
             <input type="number" class="form-control my-2" placeholder="Amount" id="transferAmount">
             <input type="number" class="form-control my-2" placeholder="PIN" id="pin">
@@ -242,9 +261,11 @@
         <div class="popup" id="popup5">
             <button type="button" class="btn-close ms-auto d-block my-2" onclick="closeRquestMoney()"
                 aria-label="Close"></button>
-            <input type="text" placeholder="The User Account Number" id="requestAccountNumber" class="form-control my-2 ">
+            <input type="text" placeholder="The User Account Number" id="requestAccountNumber"
+                class="form-control my-2 ">
             <p id="requestAccountName"></p>
-            <input type="text" placeholder="Enter The Description Of The Money" id="requestDescription" class="form-control my-2 ">
+            <input type="text" placeholder="Enter The Description Of The Money" id="requestDescription"
+                class="form-control my-2 ">
             <input type="text" placeholder="Amount" id="requestAmounte" class="form-control my-2 ">
             <input type="text" placeholder="PIN" id="requestPin" class="form-control my-2 ">
             <button type="button" id="button1" onclick="closeRequestMoney2()">Send Request</button>
@@ -266,7 +287,7 @@
     </div>
 
 
-    <div id="toast">Successful</div>
+    <div id="toast">Action successful</div>
 
     <!-- <script src="index.js"></script> -->
     <script src="scripts/dashboard.js"></script>
@@ -277,37 +298,537 @@
         }
         let allBankUsers = JSON.parse(localStorage.getItem("allBankUsers"))
         let currentBankUserIndex = JSON.parse(localStorage.getItem("currentBankUserIndex"))
-        title.innerText = `${allBankUsers[currentBankUserIndex].firstName} | Dashboard - PROADE BANK`
+        title.innerText = `${allBankUsers[currentBankUserIndex].firstName} | Dashboard - Finova Bank`
         let phoneNumberRegex = /^[\d]{11}$/
         let pinRegex = /^[\d]{4}$/
         let accountNumberRegex = /^[\d]{10}$/
         let cardNumberRegex = /^[\d]{16}$/
         let amountRegex = /^[\d]+$/
 
+        const bankArrays = [
+            {
+                "value": "120001",
+                "label": "9mobile 9Payment Service Bank"
+            },
+            {
+                "value": "801",
+                "label": "Abbey Mortgage Bank"
+            },
+            {
+                "value": "51204",
+                "label": "Above Only MFB"
+            },
+            {
+                "value": "51312",
+                "label": "Abulesoro MFB"
+            },
+            {
+                "value": "044",
+                "label": "Access Bank"
+            },
+            {
+                "value": "063",
+                "label": "Access Bank (Diamond)"
+            },
+            {
+                "value": "602",
+                "label": "Accion Microfinance Bank"
+            },
+            {
+                "value": "50036",
+                "label": "Ahmadu Bello University Microfinance Bank"
+            },
+            {
+                "value": "120004",
+                "label": "Airtel Smartcash PSB"
+            },
+            {
+                "value": "51336",
+                "label": "AKU Microfinance Bank"
+            },
+            {
+                "value": "035A",
+                "label": "ALAT by WEMA"
+            },
+            {
+                "value": "090629",
+                "label": "Amegy Microfinance Bank"
+            },
+            {
+                "value": "50926",
+                "label": "Amju Unique MFB"
+            },
+            {
+                "value": "51341",
+                "label": "AMPERSAND MICROFINANCE BANK"
+            },
+            {
+                "value": "50083",
+                "label": "Aramoko MFB"
+            },
+            {
+                "value": "401",
+                "label": "ASO Savings and Loans"
+            },
+            {
+                "value": "MFB50094",
+                "label": "Astrapolaris MFB LTD"
+            },
+            {
+                "value": "51229",
+                "label": "Bainescredit MFB"
+            },
+            {
+                "value": "50117",
+                "label": "Banc Corp Microfinance Bank"
+            },
+            {
+                "value": "50931",
+                "label": "Bowen Microfinance Bank"
+            },
+            {
+                "value": "FC40163",
+                "label": "Branch International Financial Services Limited"
+            },
+            {
+                "value": "565",
+                "label": "Carbon"
+            },
+            {
+                "value": "865",
+                "label": "CASHCONNECT MFB"
+            },
+            {
+                "value": "50823",
+                "label": "CEMCS Microfinance Bank"
+            },
+            {
+                "value": "50171",
+                "label": "Chanelle Microfinance Bank Limited"
+            },
+            {
+                "value": "312",
+                "label": "Chikum Microfinance bank"
+            },
+            {
+                "value": "023",
+                "label": "Citibank Nigeria"
+            },
+            {
+                "value": "50910",
+                "label": "Consumer Microfinance Bank"
+            },
+            {
+                "value": "50204",
+                "label": "Corestep MFB"
+            },
+            {
+                "value": "559",
+                "label": "Coronation Merchant Bank"
+            },
+            {
+                "value": "FC40128",
+                "label": "County Finance Limited"
+            },
+            {
+                "value": "51297",
+                "label": "Crescent MFB"
+            },
+            {
+                "value": "50162",
+                "label": "Dot Microfinance Bank"
+            },
+            {
+                "value": "050",
+                "label": "Ecobank Nigeria"
+            },
+            {
+                "value": "50263",
+                "label": "Ekimogun MFB"
+            },
+            {
+                "value": "098",
+                "label": "Ekondo Microfinance Bank"
+            },
+            {
+                "value": "50126",
+                "label": "Eyowo"
+            },
+            {
+                "value": "51318",
+                "label": "Fairmoney Microfinance Bank"
+            },
+            {
+                "value": "070",
+                "label": "Fidelity Bank"
+            },
+            {
+                "value": "51314",
+                "label": "Firmus MFB"
+            },
+            {
+                "value": "011",
+                "label": "First Bank of Nigeria"
+            },
+            {
+                "value": "214",
+                "label": "First City Monument Bank"
+            },
+            {
+                "value": "413",
+                "label": "FirstTrust Mortgage Bank Nigeria"
+            },
+            {
+                "value": "50315",
+                "label": "FLOURISH MFB"
+            },
+            {
+                "value": "501",
+                "label": "FSDH Merchant Bank Limited"
+            },
+            {
+                "value": "812",
+                "label": "Gateway Mortgage Bank LTD"
+            },
+            {
+                "value": "00103",
+                "label": "Globus Bank"
+            },
+            {
+                "value": "100022",
+                "label": "GoMoney"
+            },
+            {
+                "value": "50739",
+                "label": "Goodnews Microfinance Bank"
+            },
+            {
+                "value": "562",
+                "label": "Greenwich Merchant Bank"
+            },
+            {
+                "value": "058",
+                "label": "Guaranty Trust Bank"
+            },
+            {
+                "value": "51251",
+                "label": "Hackman Microfinance Bank"
+            },
+            {
+                "value": "50383",
+                "label": "Hasal Microfinance Bank"
+            },
+            {
+                "value": "030",
+                "label": "Heritage Bank"
+            },
+            {
+                "value": "120002",
+                "label": "HopePSB"
+            },
+            {
+                "value": "51244",
+                "label": "Ibile Microfinance Bank"
+            },
+            {
+                "value": "50439",
+                "label": "Ikoyi Osun MFB"
+            },
+            {
+                "value": "50442",
+                "label": "Ilaro Poly Microfinance Bank"
+            },
+            {
+                "value": "50453",
+                "label": "Imowo MFB"
+            },
+            {
+                "value": "50457",
+                "label": "Infinity MFB"
+            },
+            {
+                "value": "301",
+                "label": "Jaiz Bank"
+            },
+            {
+                "value": "50502",
+                "label": "Kadpoly MFB"
+            },
+            {
+                "value": "082",
+                "label": "Keystone Bank"
+            },
+            {
+                "value": "50200",
+                "label": "Kredi Money MFB LTD"
+            },
+            {
+                "value": "50211",
+                "label": "Kuda Bank"
+            },
+            {
+                "value": "90052",
+                "label": "Lagos Building Investment Company Plc."
+            },
+            {
+                "value": "50549",
+                "label": "Links MFB"
+            },
+            {
+                "value": "031",
+                "label": "Living Trust Mortgage Bank"
+            },
+            {
+                "value": "303",
+                "label": "Lotus Bank"
+            },
+            {
+                "value": "50563",
+                "label": "Mayfair MFB"
+            },
+            {
+                "value": "50304",
+                "label": "Mint MFB"
+            },
+            {
+                "value": "50515",
+                "label": "Moniepoint MFB"
+            },
+            {
+                "value": "120003",
+                "label": "MTN Momo PSB"
+            },
+            {
+                "value": "107",
+                "label": "Optimus Bank Limited"
+            },
+            {
+                "value": "100002",
+                "label": "Paga"
+            },
+            {
+                "value": "999991",
+                "label": "PalmPay"
+            },
+            {
+                "value": "104",
+                "label": "Parallex Bank"
+            },
+            {
+                "value": "311",
+                "label": "Parkway - ReadyCash"
+            },
+            {
+                "value": "999992",
+                "label": "Paycom"
+            },
+            {
+                "value": "50743",
+                "label": "Peace Microfinance Bank"
+            },
+            {
+                "value": "51146",
+                "label": "Personal Trust MFB"
+            },
+            {
+                "value": "50746",
+                "label": "Petra Mircofinance Bank Plc"
+            },
+            {
+                "value": "268",
+                "label": "Platinum Mortgage Bank"
+            },
+            {
+                "value": "076",
+                "label": "Polaris Bank"
+            },
+            {
+                "value": "50864",
+                "label": "Polyunwana MFB"
+            },
+            {
+                "value": "105",
+                "label": "PremiumTrust Bank"
+            },
+            {
+                "value": "101",
+                "label": "Providus Bank"
+            },
+            {
+                "value": "51293",
+                "label": "QuickFund MFB"
+            },
+            {
+                "value": "502",
+                "label": "Rand Merchant Bank"
+            },
+            {
+                "value": "90067",
+                "label": "Refuge Mortgage Bank"
+            },
+            {
+                "value": "51286",
+                "label": "Rigo Microfinance Bank Limited"
+            },
+            {
+                "value": "50767",
+                "label": "ROCKSHIELD MICROFINANCE BANK"
+            },
+            {
+                "value": "125",
+                "label": "Rubies MFB"
+            },
+            {
+                "value": "51113",
+                "label": "Safe Haven MFB"
+            },
+            {
+                "value": "951113",
+                "label": "Safe Haven Microfinance Bank Limited"
+            },
+            {
+                "value": "40165",
+                "label": "SAGE GREY FINANCE LIMITED"
+            },
+            {
+                "value": "50582",
+                "label": "Shield MFB"
+            },
+            {
+                "value": "51062",
+                "label": "Solid Allianze MFB"
+            },
+            {
+                "value": "50800",
+                "label": "Solid Rock MFB"
+            },
+            {
+                "value": "51310",
+                "label": "Sparkle Microfinance Bank"
+            },
+            {
+                "value": "221",
+                "label": "Stanbic IBTC Bank"
+            },
+            {
+                "value": "068",
+                "label": "Standard Chartered Bank"
+            },
+            {
+                "value": "51253",
+                "label": "Stellas MFB"
+            },
+            {
+                "value": "232",
+                "label": "Sterling Bank"
+            },
+            {
+                "value": "100",
+                "label": "Suntrust Bank"
+            },
+            {
+                "value": "50968",
+                "label": "Supreme MFB"
+            },
+            {
+                "value": "302",
+                "label": "TAJ Bank"
+            },
+            {
+                "value": "090560",
+                "label": "Tanadi Microfinance Bank"
+            },
+            {
+                "value": "51269",
+                "label": "Tangerine Money"
+            },
+            {
+                "value": "51211",
+                "label": "TCF MFB"
+            },
+            {
+                "value": "102",
+                "label": "Titan Bank"
+            },
+            {
+                "value": "100039",
+                "label": "Titan Paystack"
+            },
+            {
+                "value": "50840",
+                "label": "U&C Microfinance Bank Ltd (U AND C MFB)"
+            },
+            {
+                "value": "MFB51322",
+                "label": "Uhuru MFB"
+            },
+            {
+                "value": "50870",
+                "label": "Unaab Microfinance Bank Limited"
+            },
+            {
+                "value": "50871",
+                "label": "Unical MFB"
+            },
+            {
+                "value": "51316",
+                "label": "Unilag Microfinance Bank"
+            },
+            {
+                "value": "032",
+                "label": "Union Bank of Nigeria"
+            },
+            {
+                "value": "033",
+                "label": "United Bank For Africa"
+            },
+            {
+                "value": "215",
+                "label": "Unity Bank"
+            },
+            {
+                "value": "566",
+                "label": "VFD Microfinance Bank Limited"
+            },
+            {
+                "value": "51355",
+                "label": "Waya Microfinance Bank"
+            },
+            {
+                "value": "035",
+                "label": "Wema Bank"
+            },
+            {
+                "value": "057",
+                "label": "Zenith Bank"
+            }
+        ]
+        
         const displayDetails = () => {
             bankUserName.innerText = `${allBankUsers[currentBankUserIndex].firstName} ${allBankUsers[currentBankUserIndex].lastName}`
             mainBalance.innerText = `${allBankUsers[currentBankUserIndex].accountBalance}`
             accountNumber.innerText = `${allBankUsers[currentBankUserIndex].accountNumber}`
             profileImage.src = allBankUsers[currentBankUserIndex].profileImg
-            document.querySelector("#favicon").href = allBankUsers[currentBankUserIndex].profileImg 
+            document.querySelector("#favicon").href = allBankUsers[currentBankUserIndex].profileImg
             let totalWalletBalancee = 0
             allBankUsers[currentBankUserIndex].wallets.map((wallet) => {
                 totalWalletBalancee += Number(wallet.walletBalance)
                 console.log(wallet.walletBalance)
             })
             totalWalletBalancee = totalWalletBalancee
-            totalBalance.innerText = `${Number(allBankUsers[currentBankUserIndex].accountBalance)+Number(totalWalletBalancee)}`
+            totalBalance.innerText = `${Number(allBankUsers[currentBankUserIndex].accountBalance) + Number(totalWalletBalancee)}`
             transactionsHistory()
             showCard()
             showRequest()
-            
+            addBanksToList()
         }
-        const showRequest =()=>{
+        
+        const showRequest = () => {
             if (allBankUsers[currentBankUserIndex].request.length) {
                 displayRequest.innerHTML = ""
                 requestNumber.innerText = allBankUsers[currentBankUserIndex].request.length
                 viewRequest.innerText = "View All"
-                allBankUsers[currentBankUserIndex].request.map((request, index)=>{
+                allBankUsers[currentBankUserIndex].request.map((request, index) => {
                     displayRequest.innerHTML += `
                     <div class="w-100 bg-info rounded-3 row my-2 mx-auto">
                         <div class="col-9">
@@ -325,7 +846,7 @@
                     requestAmount = request.requestAmount
                     requestName = request.requestName
                     userIndex = request.userIndex
-                    
+
                 })
             } else {
                 displayRequest.innerHTML = `
@@ -337,52 +858,52 @@
         let userIndex = null
         let requestName = ""
 
-        const acceptRequest =(acceptIndex)=>{
-            if (allBankUsers[currentBankUserIndex].accountBalance>=requestAmount) {
+        const acceptRequest = (acceptIndex) => {
+            if (allBankUsers[currentBankUserIndex].accountBalance >= requestAmount) {
                 let requestConfirm = confirm(`Are you sure you want to send ${requestAmount} to ${requestName} due to the money request`)
-                if (requestConfirm==true) {
+                if (requestConfirm == true) {
                     allBankUsers[currentBankUserIndex].accountBalance -= requestAmount
                     allBankUsers[userIndex].accountBalance += requestAmount
                     allBankUsers[currentBankUserIndex].request.splice(acceptIndex, 1)
                     transactionDetails = {
-                                            transactionAmount: `-${requestAmount}`,
-                                            transactionBeneficiaryName: `${requestName}`,
-                                            transactionDate: new Date(),
-                                            transactionBeneficiaryBankName: beneficiaryBank.value,
-                                            transactionStatus: "Successful",
-                                            transactionType: "Transfer(Request)",
-                                            transactionClass: "Debit"
-                                        }
+                        transactionAmount: `-${requestAmount}`,
+                        transactionBeneficiaryName: `${requestName}`,
+                        transactionDate: new Date(),
+                        transactionBeneficiaryBankName: beneficiaryBank.value,
+                        transactionStatus: "Successful",
+                        transactionType: "Transfer(Request)",
+                        transactionClass: "Debit"
+                    }
                     allBankUsers[currentBankUserIndex].transactionHistory.push(transactionDetails)
                     localStorage.setItem("allBankUsers", JSON.stringify(allBankUsers))
                     alert(`You have successfully transferd ${requestAmount} to ${requestName}`)
                     displayDetails()
-                } else{
+                } else {
                     alert("The money request has been cancelled successfully")
                 }
-            } else{
+            } else {
                 alert("Insufficient balance")
             }
             // alert(acceptIndex)
         }
 
-        const rejectRequest = (rejectIndex)=>{
+        const rejectRequest = (rejectIndex) => {
             let deleteConfirm = confirm(`Are you sure you want to reject this request`)
-            if (deleteConfirm==true) {
-                    allBankUsers[currentBankUserIndex].request.splice(rejectIndex, 1)
-                    localStorage.setItem("allBankUsers", JSON.stringify(allBankUsers))
-                    alert(`You have successfully rejected the money request`)
-                    displayDetails()
-            } else{
+            if (deleteConfirm == true) {
+                allBankUsers[currentBankUserIndex].request.splice(rejectIndex, 1)
+                localStorage.setItem("allBankUsers", JSON.stringify(allBankUsers))
+                alert(`You have successfully rejected the money request`)
+                displayDetails()
+            } else {
                 alert("The reject operation has been cancelled successfully")
             }
             // alert(rejectIndex)
         }
 
-        const showCard =()=>{
+        const showCard = () => {
             if (allBankUsers[currentBankUserIndex].cardNumber) {
                 showCardNum.innerText = `${allBankUsers[currentBankUserIndex].cardNumber}`
-            } else{
+            } else {
                 showCardNum.innerText = `You do not have a card yet`
             }
         }
@@ -391,7 +912,7 @@
         }
 
         const fetchName = () => {
-            if (beneficiaryBank.value == "PROADE") {
+            if (beneficiaryBank.value == "Finova") {
                 allBankUsers.find((user, index) => {
                     if (user.accountNumber == beneficiaryAccountNumber.value) {
                         beneficiaryName.innerText = `Beneficiary:  ${user.firstName} ${user.lastName}`
@@ -403,11 +924,12 @@
                 setTimeout(() => transferStatus.innerText = "", 3000)
             }
         }
+        
         const transfer = () => {
             if (pinRegex.test(pin.value)) {
                 if (accountNumberRegex.test(beneficiaryAccountNumber.value)) {
                     if (allBankUsers[currentBankUserIndex].accountBalance >= transferAmount.value) {
-                        if (beneficiaryBank.value == "PROADE") {
+                        if (beneficiaryBank.value == "Finova") {
                             if (allBankUsers[currentBankUserIndex].pin == Number(pin.value)) {
                                 allBankUsers.map((user, index) => {
                                     if (user.accountNumber == beneficiaryAccountNumber.value) {
@@ -439,17 +961,17 @@
                                 setTimeout(() => transferStatus.innerText = "", 3000)
                             }
                         } else {
-                            transferStatus.innerText = `Working on other banks, you can only use PROADE BANK for now`
-                            setTimeout(()=> transferStatus.innerText = "", 3000)
+                            transferStatus.innerText = `Working on other banks, you can only use Finova Bank for now`
+                            setTimeout(() => transferStatus.innerText = "", 3000)
                         }
                     } else {
                         transferStatus.innerText = `Insufficient balance`
-                        setTimeout(()=> transferStatus.innerText = "", 3000)
+                        setTimeout(() => transferStatus.innerText = "", 3000)
                     }
-                   
+
                 } else {
                     displayError.innerText = "Invalid Account Number"
-                    setTimeout(()=> displayError.innerText = "", 3000)
+                    setTimeout(() => displayError.innerText = "", 3000)
                 }
             } else {
                 displayError.innerText = "Invalid PIN"
@@ -457,15 +979,19 @@
             }
 
         }
+        
         const closeTransferPopup = () => {
-            popup.classList.remove("open-popup")
+            document.getElementById('popup').classList.remove("open-popup")
         }
+        
         const closeTransferPopup2 = () => {
-            popup.classList.remove("open-popup")
+            document.getElementById('popup').classList.remove("open-popup")
         }
+        
         const deposit = () => {
             popup2.classList.add("open-popup")
         }
+        
         const closeDepositPopup = () => {
             if (pinRegex.test(pin2.value)) {
                 if (cardNumberRegex.test(cardNumber2.value)) {
@@ -492,19 +1018,19 @@
                             cardNumber2.value = ""
                         } else {
                             displayError2.innerText = "Wrong card number"
-                            setTimeout(()=>displayError2.innerText="", 3000)
+                            setTimeout(() => displayError2.innerText = "", 3000)
                         }
                     } else {
                         displayError2.innerText = "Wrong pin"
-                        setTimeout(()=>displayError2.innerText="", 3000)
+                        setTimeout(() => displayError2.innerText = "", 3000)
                     }
-                } else{
+                } else {
                     displayError2.innerText = "Invalid Card Number"
-                    setTimeout(()=>displayError2.innerText="", 3000)
+                    setTimeout(() => displayError2.innerText = "", 3000)
                 }
-            } else{
+            } else {
                 displayError2.innerText = "Invalid PIN"
-                setTimeout(()=>displayError2.innerText="", 3000)
+                setTimeout(() => displayError2.innerText = "", 3000)
             }
 
         }
@@ -523,16 +1049,16 @@
                     <p class="my-1 text-dark">Transaction Status: ${history.transactionStatus}</p>    
                 </div>
                 `
-                console.log(("amount"+index))
-                if (history.transactionClass=="Debit") {
-                    document.getElementById(("amount"+index)).classList.add("text-danger")
+                console.log(("amount" + index))
+                if (history.transactionClass == "Debit") {
+                    document.getElementById(("amount" + index)).classList.add("text-danger")
                 } else {
-                    document.getElementById(("amount"+index)).classList.add("text-success")
+                    document.getElementById(("amount" + index)).classList.add("text-success")
                 }
             })
         }
-        
-        const viewFullHistory =(index)=>{
+
+        const viewFullHistory = (index) => {
             popup6.classList.add("open-popup")
             let currentView = allBankUsers[currentBankUserIndex].transactionHistory[index]
             historyFullDetails.innerHTML = `
@@ -543,14 +1069,14 @@
                 <p class="my-1 text-dark">Beneficiary Bank: ${currentView.transactionBeneficiaryBankName}</p>
                 <p class="my-1 text-dark">Transaction Date: ${currentView.transactionDate}</p>
             `
-            if (history.transactionClass=="Debit") {
-                    document.getElementById(("amount")).classList.add("text-danger")
-                } else {
-                    document.getElementById(("amount")).classList.add("text-success")
-                }
+            if (history.transactionClass == "Debit") {
+                document.getElementById(("amount")).classList.add("text-danger")
+            } else {
+                document.getElementById(("amount")).classList.add("text-success")
+            }
         }
-        
-        const closeViewHistory =()=>{
+
+        const closeViewHistory = () => {
             popup6.classList.remove("open-popup")
         }
 
@@ -584,30 +1110,33 @@
                                 cardNumber.value = ""
                                 pin3.value = ""
                                 withdrawAmount.value = ""
-                            } else { displayError3.innerText = "Wrong pin"
-                                    setTimeout(()=>displayError3.innerText="", 3000)
-                                    }
-                        } else { displayError3.innerText = "Insufficient balance"
-                         setTimeout(()=>displayError3.innerText="", 3000)
-                        }
-                    } else { displayError3.innerText = "Wrong card number"
-                            setTimeout(()=>displayError3.innerText="", 3000)
+                            } else {
+                                displayError3.innerText = "Wrong pin"
+                                setTimeout(() => displayError3.innerText = "", 3000)
                             }
-                } else{
+                        } else {
+                            displayError3.innerText = "Insufficient balance"
+                            setTimeout(() => displayError3.innerText = "", 3000)
+                        }
+                    } else {
+                        displayError3.innerText = "Wrong card number"
+                        setTimeout(() => displayError3.innerText = "", 3000)
+                    }
+                } else {
                     displayError3.innerText = "Invalid PIN"
-                    setTimeout(()=>displayError3.innerText="", 3000)
+                    setTimeout(() => displayError3.innerText = "", 3000)
                 }
-            } else{
+            } else {
                 displayError3.innerText = "Invalid Card Number"
-                setTimeout(()=>displayError3.innerText="", 3000)
+                setTimeout(() => displayError3.innerText = "", 3000)
             }
 
         }
-        
+
         const withdraw = () => {
             popup3.classList.add("open-popup")
         }
-        
+
         const showCardNumber = () => {
             if (allBankUsers[currentBankUserIndex].cardNumber) {
                 cardNumber16.innerText = `Your card number:  ${allBankUsers[currentBankUserIndex].cardNumber}`
@@ -617,29 +1146,29 @@
             }
             popup4.classList.add("open-popup")
         }
-        
+
         const closeCardNumber = () => {
             popup4.classList.remove("open-popup")
         }
-        
+
         const signOut = () => {
             localStorage.removeItem("currentBankUserIndex")
             window.location.href = "bankSignInPage.html"
         }
-        
-        const openRequestMoney = ()=>{
+
+        const openRequestMoney = () => {
             popup5.classList.add("open-popup")
         }
-        
-        const closeRquestMoney =()=>{
+
+        const closeRquestMoney = () => {
             popup5.classList.remove("open-popup")
         }
-        
-        const closeRequestMoney2 =()=>{
+
+        const closeRequestMoney2 = () => {
             if (accountNumberRegex.test(requestAccountNumber.value)) {
                 if (amountRegex.test(requestAmounte.value)) {
                     if (pinRegex.test(requestPin.value)) {
-                        allBankUsers.map((user, index)=>{
+                        allBankUsers.map((user, index) => {
                             if (user.accountNumber == requestAccountNumber.value) {
                                 requestAccountName.innerText = `${allBankUsers[index].firstName}  ${allBankUsers[index].lastName}`
                                 if (allBankUsers[currentBankUserIndex].pin == requestPin.value) {
@@ -653,125 +1182,136 @@
                                     allBankUsers[index].request.push(requestDetails)
                                     localStorage.setItem("allBankUsers", JSON.stringify(allBankUsers))
                                     popup5.classList.remove("open-popup")
-                                } else{
+                                } else {
                                     alert("Wrong pin")
                                 }
-                            } else{
+                            } else {
                                 requestAccountName.innerText = `No user found with this account number`
                             }
-                        }) 
-                    } else{
+                        })
+                    } else {
                         alert("Invalid PIN")
                     }
-                } else{
+                } else {
                     alert("Invalid amount")
                 }
-            } else{
+            } else {
                 alert("Invalid account number")
             }
-            
+
         }
 
-        const goToHistoryPage =()=>{
+        const goToHistoryPage = () => {
             window.location.href = "bankHistoryPage.html"
         }
 
-        const copyCardNumber =(e)=>{
+        const copyCardNumber = (e) => {
             navigator.clipboard.writeText(e.target.previousElementSibling.innerText)
             copiedDiv.style.display = "flex"
-                setTimeout(() => copiedDiv.style.display = "none", 3000);
-            }
+            setTimeout(() => copiedDiv.style.display = "none", 3000);
+        }
 
 
         var xValues = [];
         var yValues = [];
         var barColors = ["red", "green", "blue", "orange", "brown"];
-        allBankUsers[currentBankUserIndex].wallets.map((wallet)=>{
+        allBankUsers[currentBankUserIndex].wallets.map((wallet) => {
             xValues.push(wallet.walletName)
             yValues.push(wallet.walletBalance)
         })
 
-        if (yValues.length>0) {
-            new Chart("walletChart", {
-        type: "doughnut",
-        data: {
-            labels: xValues,
-            datasets: [{
-            backgroundColor: barColors,
-            data: yValues
-            }]
-        },
-        options: {
-            legend: { display: true },
-            title: {
-            display: true,
-            text: "Wallet Summary"
-            }
-        }
-        });
 
-        } else{
+
+        if (yValues.length > 0) {
+            new Chart("walletChart", {
+                type: "doughnut",
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                        backgroundColor: barColors,
+                        data: yValues
+                    }]
+                },
+                options: {
+                    legend: { display: true },
+                    title: {
+                        display: true,
+                        text: "Wallet Summary"
+                    }
+                }
+            });
+
+        } else {
             var canvas = document.getElementById("walletChart");
-                var ctx = canvas.getContext("2d");
-                ctx.font = "15px Arial";
-                ctx.fillStyle = "skyblue";
-                ctx.textAlign = "center";
-                ctx.fillText(`Wallet Summary`, canvas.width/2, (canvas.height/2)-60);
-                ctx.fillText(`You have no no wallet created yet`, canvas.width/2, canvas.height/2);
-                ctx.fillText(`Your wallet chart will be displayed here`, canvas.width/2, (canvas.height/2)+40);
-  
+            var ctx = canvas.getContext("2d");
+            ctx.font = "15px Arial";
+            ctx.fillStyle = "skyblue";
+            ctx.textAlign = "center";
+            ctx.fillText(`Wallet Summary`, canvas.width / 2, (canvas.height / 2) - 60);
+            ctx.fillText(`You have no no wallet created yet`, canvas.width / 2, canvas.height / 2);
+            ctx.fillText(`Your wallet chart will be displayed here`, canvas.width / 2, (canvas.height / 2) + 40);
+
         }
         // const transactionChartView =()=>{
-            let credit = 0
+        let credit = 0
         let debit = 0
         // var barColors = ["red", "green", "blue", "orange", "brown"];
         // allBankUsers[currentBankUserIndex].wallets.map((wallet)=>{
-            if (allBankUsers[currentBankUserIndex].transactionHistory.length>0) {
-                allBankUsers[currentBankUserIndex].transactionHistory.map((history)=>{
-                if (history.transactionClass=="Credit") {
+        if (allBankUsers[currentBankUserIndex].transactionHistory.length > 0) {
+            allBankUsers[currentBankUserIndex].transactionHistory.map((history) => {
+                if (history.transactionClass == "Credit") {
                     credit += history.transactionAmount
                     credits = eval(credit)
-                } else if (history.transactionClass=="Debit") {
+                } else if (history.transactionClass == "Debit") {
                     debit += history.transactionAmount
                     debits = eval(debit)
                 }
             })
-            console.log(credits)
             var xxValues = ["Credit", "Debit"];
             var yyValues = [`${credits}`, `${debit}`];
-        // })
+            // })
 
 
             new Chart("transactionChart", {
-        type: "doughnut",
-        data: {
-            labels: xxValues,
-            datasets: [{
-            backgroundColor: barColors,
-            data: yyValues
-            }]
-        },
-        options: {
-            legend: { display: true },
-            title: {
-            display: true,
-            text: "Transaction Summary"
-            }
+                type: "doughnut",
+                data: {
+                    labels: xxValues,
+                    datasets: [{
+                        backgroundColor: barColors,
+                        data: yyValues
+                    }]
+                },
+                options: {
+                    legend: { display: true },
+                    title: {
+                        display: true,
+                        text: "Transaction Summary"
+                    }
+                }
+            });
+        } else {
+            var canvas = document.getElementById("transactionChart");
+            var ctx = canvas.getContext("2d");
+            ctx.font = "15px Arial";
+            ctx.fillStyle = "skyblue";
+            ctx.textAlign = "center";
+            ctx.fillText(`Transaction Summary`, canvas.width / 2, (canvas.height / 2) - 60);
+            ctx.fillText(`You have no transaction history yet`, canvas.width / 2, canvas.height / 2);
+            ctx.fillText(`Your transaction history will be displayed here`, canvas.width / 2, (canvas.height / 2) + 40);
+
         }
-        });
-            } else{
-                var canvas = document.getElementById("transactionChart");
-                var ctx = canvas.getContext("2d");
-                ctx.font = "15px Arial";
-                ctx.fillStyle = "skyblue";
-                ctx.textAlign = "center";
-                ctx.fillText(`Transaction Summary`, canvas.width/2, (canvas.height/2)-60);
-                ctx.fillText(`You have no transaction history yet`, canvas.width/2, canvas.height/2);
-                ctx.fillText(`Your transaction history will be displayed here`, canvas.width/2, (canvas.height/2)+40);
-  
-            }
-        
+
         // }
+
+
+
+        const addBanksToList = () => {
+            document.getElementById('beneficiaryBank').innerHTML = `<option selected value="Finova">Finova Bank</option>`
+            bankArrays.map((bank)=>{
+                document.getElementById('beneficiaryBank').innerHTML += `<option value="${bank.value}">${bank.label}</option>`
+            })
+        }
+
     </script>
 </body>
 
